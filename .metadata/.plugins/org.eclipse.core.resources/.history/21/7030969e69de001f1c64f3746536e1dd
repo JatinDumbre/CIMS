@@ -1,0 +1,5 @@
+package com.cims.demo.repositories;
+
+public interface UserRepository {
+
+}
