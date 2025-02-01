@@ -1,0 +1,5 @@
+package com.cims.auth.Entities;
+
+public class Access {
+
+}
