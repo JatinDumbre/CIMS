@@ -1,15 +1,15 @@
 import React from "react";
-
-import "../styles/Home.css";
-import Navbar from "./Navbar";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import "../../styles/Home.css";
+import Footer from "../Admin/Footer";
 
 const Home = () => {
   // const navigate = useNavigate();
   // const mystate = useSelector((state) => state.logged);
   return (
-    <>
-      <Navbar />
-      <div className="container-fluid home-content">
+    <div className=" home-content">
+      <div className="content" style={{ height: "100%" }}>
         <h1
           className=" text-center h1"
           style={{
@@ -24,7 +24,9 @@ const Home = () => {
           </i>
         </h1>
       </div>
-    </>
+
+      <Footer />
+    </div>
   );
 };
 

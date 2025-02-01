@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.login {
+  background: url("../assets/home-image.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: "100vh";
+}
+
+.email-error,
+.password-error {
+  border: 1px solid red;
+}
+
+.error-msg {
+  color: red;
+}
