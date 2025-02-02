@@ -1,0 +1,15 @@
+package com.cims.crud.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cims.crud.repositories.AccessRepository;
+import com.cims.crud.repositories.UserRepository;
+
+public class UserService {
+	@Autowired
+	UserRepository urepo;
+	
+	@Autowired
+	AccessRepository accrepo;
+
+}

@@ -20,7 +20,7 @@ public class UserService {
 	
 	public User getUser(String email, String pass) {
 		User u;
-		Optional<User> ou = urepo.getUser(email, pass);
+		Optional<User> ou = urepo.getUser(email, pass,"Active");
 		try {
 			u = ou.get();
 		}
@@ -30,8 +30,8 @@ public class UserService {
 		return u;
 	}
 	
-	public User register(String fname,String lname,String mobno,String email,String address,String password,int acc_id) {
-		User u = new User(password,fname,lname,mobno,email,address,new Access( acc_id, accrepo.getAccessType(acc_id)));
+	public User register(String fname,String lname,String mobno,String email,String address,String password,int acc_id,String status) {
+		User u = new User(password,fname,lname,mobno,email,address,new Access( acc_id, accrepo.getAccessType(acc_id)),status);
 		return urepo.save(u);
 	}
 	

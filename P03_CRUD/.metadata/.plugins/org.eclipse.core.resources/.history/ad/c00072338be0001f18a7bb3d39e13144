@@ -1,0 +1,26 @@
+package Classes;
+
+import com.cims.crud.entities.Access;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class GetAllUser {
+	String fname;
+
+	String lname;
+
+	String mob_no;
+	
+	String email;
+
+	String address;
+	
+	Access acc_id;
+
+}
