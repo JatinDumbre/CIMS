@@ -12,8 +12,8 @@ const AdminHome = () => {
   const userid = JSON.parse(localStorage.getItem("loggedUser")).user_id;
 
   const deleteUser = async (id) => {
-    await fetch("http://localhost:8033/deleteEmployee/" + id, {
-      method: "DELETE",
+    await fetch("http://localhost:8033/deactivateEmployee/" + id, {
+      method: "PUT",
     }).then((response) => {
       if (response.status === 200) {
         setEmployees(

@@ -13,13 +13,14 @@ import "./App.css";
 import { useSelector } from "react-redux";
 import LogoutComp from "./components/Auth/LogoutComp";
 import UpdateForm from "./components/UpdateForm";
+import AddMaterialForm from "./components/SiteOperator/AddMaterialForm";
 function App() {
   const mystate = useSelector((state) => state.logged);
   return (
     <div className="app-content">
       <div style={{ display: mystate.loggedIn ? "none" : "block" }}>
         <nav className=" navbar navbar-expand-sm bg-light mb-1">
-          <div className=" container-fluid d-flex flex-row-reverse">
+          <div className=" container d-flex flex-row-reverse">
             <ul className="navbar-nav ">
               <li className="nav-item">
                 <Link
@@ -54,6 +55,7 @@ function App() {
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/logout" element={<LogoutComp />} />
         <Route path="/update" element={<UpdateForm />} />
+        <Route path="/requestMatToIP" element={<AddMaterialForm />} />
       </Routes>
     </div>
   );
