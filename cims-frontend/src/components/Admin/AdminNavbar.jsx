@@ -6,7 +6,7 @@ const AdminNavbar = () => {
   return (
     <div>
       <nav className=" navbar navbar-expand-sm bg-light mb-3">
-        <div className=" container-fluid d-flex flex-row-reverse">
+        <div className=" container d-flex flex-row-reverse">
           <ul className="navbar-nav d-flex flex-row-reverse">
             <li className="nav-item">
               <a

@@ -7,7 +7,7 @@ const SONavbar = () => {
   return (
     <div>
       <nav className=" navbar navbar-expand-sm bg-light mb-3">
-        <div className=" container-fluid d-flex flex-row-reverse">
+        <div className=" container d-flex flex-row-reverse">
           <ul className="navbar-nav d-flex flex-row-reverse">
             <li className="nav-item">
               <a
@@ -16,19 +16,19 @@ const SONavbar = () => {
                 onClick={() =>
                   confirm("Do you want to logout?")
                     ? navigate("/logout")
-                    : navigate("/admin")
+                    : navigate("/siteoperator")
                 }
               >
                 Logout
               </a>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link
-                to="/register"
+                to="/requestMatToIP"
                 className="nav-link px-3 nav-links"
                 style={{ color: "orange" }}
               >
-                New Registration
+                Add Material
               </Link>
             </li>
             <li className="nav-item">
@@ -39,7 +39,7 @@ const SONavbar = () => {
               >
                 Update Profile
               </Link>
-            </li> */}
+            </li>
           </ul>
         </div>
       </nav>

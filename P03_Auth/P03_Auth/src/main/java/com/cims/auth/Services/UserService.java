@@ -35,4 +35,9 @@ public class UserService {
 		return urepo.save(u);
 	}
 	
+	public User getUserById(int userid) {
+		Optional<User> user=urepo.findById(userid);
+		return user.orElseThrow(()-> new RuntimeException("User not Found"));
+	}
+	
 }
