@@ -28,7 +28,7 @@ public class IPManagerController {
     }
     
     @PutMapping("/update-project")
-    public void updateProject(@RequestBody UpdateProject updateP) {
+    public void updateProject(@RequestBody UpdateProject updateP) {  
     	ipservice.updateProject(updateP);
     }
 

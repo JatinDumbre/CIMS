@@ -13,6 +13,7 @@ import com.cims.crud.repositories.SiteOperatorRepository;
 import com.cims.crud.repositories.UserRepository;
 
 import Classes.GetMaterial;
+import Classes.UpdateMaterialQuantity;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -45,35 +46,41 @@ public class SiteOperatorService {
 	        return materials;
 	    }
 
-	
-	@Transactional
-	public void addMaterialInSite(String materialName,String unitName,Float quantity, int siteOpId) {
-		int unitId = mprepo.findUnitIdByName(unitName)
-                .orElseThrow(() -> new RuntimeException("Unit '" + unitName + "' not found."));
-		
-		int materialCount=mprepo.checkMaterialExists(materialName, unitId);
-		if(materialCount==0) {
-			throw new RuntimeException("Material '" + materialName + "' with Unit Name " + unitId + " does not exist.");
-		}
-		
-		Integer projectId=mprepo.findProjectIdBySiteOperator(siteOpId)
-				 .orElseThrow(() -> new RuntimeException("No project assigned to this Site Operator"));
-		
-		Integer materialId=mprepo.findMaterialIdByNameAndUnit(materialName, unitId)
-				.orElseThrow(() -> new RuntimeException("Material not found"));
-		
-		
-		Material_Project materialProject=new Material_Project();
-		materialProject.setPj_id(projectId);
-		materialProject.setMat_id(materialId);
-		materialProject.setQuantity(quantity);
-		
-		mprepo.save(materialProject);
-	}
-	
-	@Transactional
-    public boolean updateMaterialQuantity(int materialId, int projectId, int newQuantity) {
-        int updatedRows = mprepo.updateMaterialQuantity(materialId, projectId, newQuantity);
-        return updatedRows > 0; // Returns true if update was successful
-    }
+	 @Transactional
+	 public void addMaterialInSite(String materialName, String unitName, Float quantity, int siteOpId) {
+	     // Fetch Unit ID based on Unit Name
+	     int unitId = mprepo.findUnitIdByName(unitName)
+	             .orElseThrow(() -> new RuntimeException("Unit '" + unitName + "' not found."));
+
+	     // Check if Material exists
+	     if (mprepo.checkMaterialExists(materialName, unitId) == 0) {
+	         throw new RuntimeException("Material '" + materialName + "' with Unit Name '" + unitName + "' does not exist.");
+	     }
+
+	     // Fetch Project ID for the Site Operator
+	     int projectId = mprepo.findProjectIdBySiteOperator(siteOpId)
+	             .orElseThrow(() -> new RuntimeException("No project assigned to this Site Operator."));
+
+	     // Fetch Material ID using Material Name and Unit ID
+	     int materialId = mprepo.findMaterialIdByNameAndUnit(materialName, unitId)
+	             .orElseThrow(() -> new RuntimeException("Material not found."));
+
+	     // Create and save Material_Project entity
+	     Material_Project materialProject = new Material_Project();
+	     materialProject.setPj_id(projectId);
+	     materialProject.setMat_id(materialId);
+	     materialProject.setQuantity(quantity);
+
+	     mprepo.save(materialProject);
+	 }
+
+	 @Transactional
+	 public boolean updateMaterialQuantity(UpdateMaterialQuantity request) {
+	     int updatedRows = mprepo.updateMaterialQuantity(
+	         request.getMaterialId(),
+	         request.getProjectId(),
+	         request.getNewQuantity()
+	     );
+	     return updatedRows > 0; // Returns true if update was successful
+	 }
 }

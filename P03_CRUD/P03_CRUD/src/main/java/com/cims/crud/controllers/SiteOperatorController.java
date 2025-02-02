@@ -18,6 +18,8 @@ import com.cims.crud.entities.Material;
 import com.cims.crud.services.SiteOperatorService;
 
 import Classes.GetMaterial;
+import Classes.MaterialAdd;
+import Classes.UpdateMaterialQuantity;
 
 @CrossOrigin(origins = "http://localhost:3003")
 @RestController
@@ -31,17 +33,20 @@ public class SiteOperatorController {
         return ResponseEntity.ok(materials);
     }
 	
-	@PostMapping("/addMaterial")
-	public void addMat(@RequestParam String materialName, @RequestParam String unitName,@RequestParam Float quantity,@RequestParam int so_id) {
-		soservice.addMaterialInSite(materialName, unitName, quantity, so_id);
-	}
+	 @PostMapping("/addMaterial")
+	    public void addMaterial(@RequestBody MaterialAdd materialRequest) {
+	        soservice.addMaterialInSite(
+	            materialRequest.getMaterialName(),
+	            materialRequest.getUnitName(),
+	            materialRequest.getQuantity(),
+	            materialRequest.getSoId()
+	        );
+	        
+	    }
 	
 	 @PutMapping("/update-quantity")
-	    public void updateMaterialQuantity(
-	            @RequestParam int materialId,
-	            @RequestParam int projectId,
-	            @RequestParam int newQuantity) {
-
-	        soservice.updateMaterialQuantity(materialId, projectId, newQuantity);
-	    }
+	 public void updateMaterialQuantity(@RequestBody UpdateMaterialQuantity request) {
+	     soservice.updateMaterialQuantity(request);
+	     
+	 }
 }
