@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.email-error,
+.password-error,
+.fname-error,
+.lname-error,
+.mobno-error,
+.address-error,
+.acc_id-error {
+  border: 1px solid red;
+}
+
+.error-msg {
+  color: red;
+}
