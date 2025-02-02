@@ -1,0 +1,5 @@
+package com.cims.crud.entities;
+
+public class Category {
+
+}

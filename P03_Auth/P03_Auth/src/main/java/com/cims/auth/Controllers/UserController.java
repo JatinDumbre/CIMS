@@ -25,7 +25,7 @@ public class UserController {
 	
 	@PostMapping("/register")
 	public User register(@RequestBody RegisterUser ru) {
-		return uservice.register(ru.getFname(),ru.getLname(),ru.getMob_no(),ru.getEmail(),ru.getAddress(),ru.getPassword(),ru.getAcc_id());
+		return uservice.register(ru.getFname(),ru.getLname(),ru.getMob_no(),ru.getEmail(),ru.getAddress(),ru.getPassword(),ru.getAcc_id(),ru.getStatus());
 	}
 	
 }

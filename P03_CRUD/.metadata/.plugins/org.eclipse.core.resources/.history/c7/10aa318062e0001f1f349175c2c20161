@@ -1,0 +1,18 @@
+package com.cims.crud.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.cims.crud.repositories.AdminRepository;
+
+@Service
+public class AdminService {
+	@Autowired
+	AdminRepository arepo;
+	
+	public Optional<Object[]> getAll(){
+		return arepo.findAllEmployees();
+	}
+}

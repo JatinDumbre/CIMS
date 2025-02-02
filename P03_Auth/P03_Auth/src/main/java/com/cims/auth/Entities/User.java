@@ -43,9 +43,11 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name="acc_id")//foreign key access
 	Access acc_id;
+	
+	String status;
 
 	public User(String password, String fname, String lname, String mob_no, String email, String address,
-			Access acc_id) {
+			Access acc_id,String status) {
 		super();
 		this.password = password;
 		this.fname = fname;
@@ -54,6 +56,7 @@ public class User {
 		this.email = email;
 		this.address = address;
 		this.acc_id = acc_id;
+		this.status=status;
 	}
 
 }

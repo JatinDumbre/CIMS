@@ -1,0 +1,22 @@
+package com.cims.crud.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cims.crud.repositories.ProjectManagerRepository;
+import com.cims.crud.repositories.UserRepository;
+
+@Service
+public class ProjectManagerService {
+	@Autowired
+	ProjectManagerRepository pmrepo;
+	@Autowired
+	UserRepository urepo;
+	
+	public Optional<Object[]> getMaterial(int userid) {
+		return pmrepo.findMaterialsByProjectManager(userid);
+	}
+
+}
