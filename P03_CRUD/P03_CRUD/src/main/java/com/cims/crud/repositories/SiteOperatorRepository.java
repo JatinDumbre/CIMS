@@ -34,5 +34,4 @@ public interface SiteOperatorRepository extends JpaRepository<User,Integer>{
 	        "SELECT COUNT(*) FROM Material WHERE m_name = :materialName AND unit_id = :unitId")
 	    int checkMaterialExists(String materialName, int unitId);
 	    
-	    
 }

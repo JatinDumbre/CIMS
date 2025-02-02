@@ -1,0 +1,27 @@
+package com.cims.crud.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cims.crud.services.IPManagerService;
+
+import Classes.ProjectDetails;
+
+@CrossOrigin(origins = "http://localhost:3003")
+@RestController
+public class IPManagerController {
+	@Autowired
+    IPManagerService ipservice;
+
+    @GetMapping("/projects")
+    public List<ProjectDetails> getProjectDetails() {
+        List<ProjectDetails> projects = ipservice.getProjectsWithManagers();
+        return projects;
+    }
+
+}

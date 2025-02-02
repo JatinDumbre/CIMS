@@ -5,11 +5,13 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.cims.crud.entities.Material_Project;
 
 import jakarta.transaction.Transactional;
 
+@Repository
 public interface MaterialProjectRepository extends JpaRepository<Material_Project, Integer>  {
 	@Query(nativeQuery=true,value="select m.m_id,p.project_name,m.m_name,p1.quantity,u.unit_name,c.cat_name,m.description,p2.pm_id,p2.so_id"
 			+ " from Material_Project p1, Material m, Project_Allocation p2, Unit u, Category c,Project p"
@@ -36,7 +38,12 @@ public interface MaterialProjectRepository extends JpaRepository<Material_Projec
 	        "SELECT COUNT(*) FROM Material WHERE m_name = :materialName AND unit_id = :unitId")
 	    int checkMaterialExists(String materialName, int unitId);
 	    
-	    
+	    @Modifying
+	    @Transactional
+	    @Query(nativeQuery = true, value = 
+	        "UPDATE material_project SET quantity = :newQuantity WHERE mat_id = :materialId AND pj_id = :projectId")
+	    int updateMaterialQuantity(int materialId, int projectId, int newQuantity);
+
 	    
 	}
 

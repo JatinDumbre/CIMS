@@ -70,4 +70,10 @@ public class SiteOperatorService {
 		
 		mprepo.save(materialProject);
 	}
+	
+	@Transactional
+    public boolean updateMaterialQuantity(int materialId, int projectId, int newQuantity) {
+        int updatedRows = mprepo.updateMaterialQuantity(materialId, projectId, newQuantity);
+        return updatedRows > 0; // Returns true if update was successful
+    }
 }
