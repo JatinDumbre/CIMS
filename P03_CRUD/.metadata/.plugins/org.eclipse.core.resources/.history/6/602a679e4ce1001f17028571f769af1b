@@ -1,0 +1,24 @@
+package com.cims.crud.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.cims.crud.services.IPManagerService;
+
+import Classes.ProjectDetails;
+
+public class IPManagerController {
+	@Autowired
+    IPManagerService ipservice;
+
+    @GetMapping("/projects")
+    public ResponseEntity<List<ProjectDetails>> getProjectDetails() {
+        List<ProjectDetails> projects = ipservice.getProjectsWithManagers();
+        return projects;
+       
+    }
+
+}

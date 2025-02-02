@@ -1,0 +1,23 @@
+package com.cims.crud.repositories;
+
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.cims.crud.entities.Material;
+import com.cims.crud.entities.User;
+
+@Repository
+public interface ProjectManagerRepository extends JpaRepository<User,Integer>{
+	@Query("SELECT pm FROM User u " +
+	           "JOIN project_allocation pa ON u.user_id = pa.pm_id " +
+	           "JOIN Project p ON pa.p_id = p.project_id " +
+	           "JOIN material_project pm ON p.project_id = pm.pj_id " +
+	           "WHERE u.acc_id = :acc_id AND u.user_id = :user_id")
+	 List<Material> findMaterialsByProjectManager(@Param("accessId") String accessId, @Param("userId") Long userId);
+	
+}

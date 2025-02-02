@@ -1,0 +1,31 @@
+package com.cims.crud.services;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cims.crud.repositories.IPManagerRepository;
+
+import Classes.ProjectDetails;
+
+public class IPManagerService {
+	 @Autowired
+	 IPManagerRepository iprepo;
+
+	    public List<ProjectDetails> getProjectsWithManagers() {
+	        List<Object[]> results = iprepo.findMaterialsByProjectManager();
+
+	        return results.stream()
+	                .map(obj -> new ProjectDetails(
+	                        (Integer) obj[0],  // project_id
+	                        (String) obj[1],   // project_name
+	                        (String) obj[2],   // location_name
+	                        (String) obj[3],   // location_address
+	                        (String) obj[4],   // location_city
+	                        (String) obj[5],   // project_manager
+	                        (String) obj[6]    // site_operator
+	                ))
+	                .collect(Collectors.toList());
+	    }
+}
