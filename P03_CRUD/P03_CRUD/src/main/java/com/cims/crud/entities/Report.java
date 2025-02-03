@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,11 +25,13 @@ public class Report {
 	@Column(name="rep_id")
 	int rep_id;
 	
-	@Column(name="proj_id")//foreign key project
-	int proj_name;
+	@ManyToOne
+	@JoinColumn(name="proj_id")//foreign key project
+	Project proj_name;
 	
-	@Column(name="gen_by")//foreign key User 
-	int gen_by;
+	@ManyToOne
+	@JoinColumn(name="gen_by")//foreign key User 
+	User gen_by;
 	
 	@Column(name="rep_date")
 	Date rep_date;

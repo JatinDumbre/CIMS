@@ -31,7 +31,8 @@ public class Project_Allocation {
 	@JoinColumn(name="pm_id")//foreign key User projectManager id
 	User pm_id;
 	
-	@Column(name="so_id")//foreign key User siteOperator id
-	int so_id;
+	@ManyToOne
+	@JoinColumn(name="so_id")//foreign key User siteOperator id
+	User so_id;
 	
 }

@@ -8,9 +8,12 @@ public class ProjectDetails{
     private String locationCity;
     private String projectManager;
     private String siteOperator;
+    private int projectManagerId;
+    private int siteOperatorId;
+    private int locationId;
 
     public ProjectDetails(int projectId, String projectName, String locationName, String locationAddress,
-                             String locationCity, String projectManager, String siteOperator) {
+                             String locationCity, String projectManager, String siteOperator,int projectManagerId,int siteOperatorId,int locationId) {
         this.projectId = projectId;
         this.projectName = projectName;
         this.locationName = locationName;
@@ -18,9 +21,15 @@ public class ProjectDetails{
         this.locationCity = locationCity;
         this.projectManager = projectManager;
         this.siteOperator = siteOperator;
+        this.locationId=locationId;
+        this.siteOperatorId=siteOperatorId;
+        this.projectManagerId=projectManagerId;
     }
 
     // Getters and setters
+    public int getLocationId() {return locationId;}
+    public int getSiteOperatorId() {return siteOperatorId;}
+    public int getProjectManagerId() {return projectManagerId;}
     public int getProjectId() { return projectId; }
     public String getProjectName() { return projectName; }
     public String getLocationName() { return locationName; }

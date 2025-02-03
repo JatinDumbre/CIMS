@@ -1,0 +1,25 @@
+package com.cims.crud.repositories;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.cims.crud.entities.Location;
+import com.cims.crud.entities.Project;
+
+import jakarta.transaction.Transactional;
+
+@Repository
+public interface ProjectRepository extends JpaRepository<Project, Integer>{
+	@Modifying
+    @Transactional
+    @Query(value = "INSERT INTO project (project_name, loc_id) VALUES (:project_name, :loc_id)", nativeQuery = true)
+    int insertProject(String project_name, int loc_id);
+	
+	@Query(value = "select p.project_id,p.project_name,l.loc_name"
+			+ "from project p , location l"
+			+ "where p.loc_id=l.loc_id; ", nativeQuery = true)
+}

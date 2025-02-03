@@ -30,4 +30,5 @@ public class Location {
 	@Column(name="loc_city")
 	String loc_city;
 
+
 }

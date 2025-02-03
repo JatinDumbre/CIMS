@@ -6,8 +6,14 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cims.crud.entities.Location;
+import com.cims.crud.entities.Material;
+import com.cims.crud.entities.Project;
 import com.cims.crud.repositories.IPManagerRepository;
+import com.cims.crud.repositories.LocationRepository;
+import com.cims.crud.repositories.ProjectRepository;
 
+import Classes.GetAllProjects;
 import Classes.ProjectDetails;
 import Classes.UpdateProject;
 import jakarta.transaction.Transactional;
@@ -17,6 +23,13 @@ public class IPManagerService {
 	 @Autowired
 	 IPManagerRepository iprepo;
 
+	 @Autowired
+	 LocationRepository lrepo;
+	 
+	 @Autowired
+	 ProjectRepository prepo;
+	
+	 
 	    public List<ProjectDetails> getProjectsWithManagers() {
 	        List<Object[]> results = iprepo.findMaterialsByProjectManager();
 
@@ -28,9 +41,16 @@ public class IPManagerService {
 	                        (String) obj[3],   // location_address
 	                        (String) obj[4],   // location_city
 	                        (String) obj[5],   // project_manager
-	                        (String) obj[6]    // site_operator
+	                        (String) obj[6],   // site_operator
+	                        (int) obj[7],
+	                        (int) obj[8],
+	                        (int) obj[9]
 	                ))
 	                .collect(Collectors.toList());
+	    }
+	    
+	    public ProjectDetails getProject(int projectId) {
+	    	return iprepo.findProjectByProjectManager(projectId);
 	    }
 	    
 	    @Transactional
@@ -58,4 +78,35 @@ public class IPManagerService {
 
 	        return (projectUpdateCount > 0 || allocationUpdateCount > 0);
 	    }
+	    
+	    @Transactional
+	    public void addLocation(Location location) {
+	        lrepo.insertLocation(
+	        		location.getLoc_id(),
+	                location.getLoc_name(), 
+	                location.getLoc_add(), 
+	                location.getLoc_city()
+	        );
+	    }
+	    
+	    @Transactional
+	    public void addProject(Project project) {
+	    	 if (project.getLoc_id() == null) {
+	    	        throw new IllegalArgumentException("Location cannot be null!");
+	    	    }
+	        prepo.insertProject(
+	                project.getProject_name(),  // Correct getter method
+	                project.getLoc_id().getLoc_id() // Fix: Get ID from Location entity
+	        );
+	    }
+	    
+	    
+	    public List<Location> getAllLocations() {
+	        return lrepo.getAllLocations();
+	    }
+	    
+	    public List<GetAllProjects> getAllProjects(){
+	    	return prepo.getAllProjects();
+	    }
+	    
 }
