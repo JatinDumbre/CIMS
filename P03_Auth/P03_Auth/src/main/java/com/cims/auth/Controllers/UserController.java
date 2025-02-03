@@ -1,7 +1,10 @@
 package com.cims.auth.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +30,18 @@ public class UserController {
 	public User register(@RequestBody RegisterUser ru) {
 		return uservice.register(ru.getFname(),ru.getLname(),ru.getMob_no(),ru.getEmail(),ru.getAddress(),ru.getPassword(),ru.getAcc_id(),ru.getStatus());
 	}
+	
+//	change by pankaj
+	@GetMapping("/getUser/{userid}")
+	public ResponseEntity<?> getUserById(@PathVariable int userid) {
+	    User user = uservice.getUserById(userid);
+	    
+	    if (user != null) {
+	        return ResponseEntity.ok(user);
+	    } else {
+	        return ResponseEntity.status(404).body("User not found");
+	    }
+	}
+//
 	
 }

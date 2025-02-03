@@ -40,36 +40,45 @@ const SiteOperatorHome = () => {
           <h2>Welcome, {userData.fname}</h2>
         </div>
 
+        <div className="d-flex justify-content-around info mt-5 mb-5">
+          <div>
+            {/* <b> Project Location: {materials[0].projectName}</b> */}
+          </div>
+          <div className="">
+            {/* <b> Project Manager ID: {materials[0].projectManagerId}</b> */}
+          </div>
+        </div>
+
         <div className="mTable ">
           <h3 className="text-center mb-3">Materials</h3>
           <table className="table table-hover ms-3 me-3">
             <thead>
               <tr className="text-center">
                 <th scope="col ">Sr No</th>
-                <th scope="col">Project Name</th>
+                {/* <th scope="col">Project Name</th> */}
                 <th scope="col">Material Name</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Units</th>
                 <th scope="col">Category</th>
                 <th scope="col">Description</th>
-                <th scope="col">Project Manager Id</th>
-                <th scope="col">Site Operator Id</th>
+                {/* <th scope="col">Project Manager Id</th> */}
+                {/* <th scope="col">Site Operator Id</th> */}
               </tr>
             </thead>
             <tbody>
               {materials.map((mat) => {
                 count++;
                 return (
-                  <tr className="text-center" key={mat.m_id}>
+                  <tr className="text-center" key={count}>
                     <td>{count}</td>
-                    <td>{mat.projectName}</td>
+                    {/* <td>{mat.projectName}</td> */}
                     <td>{mat.materialName}</td>
                     <td>{mat.quantity}</td>
                     <td>{mat.unitName}</td>
                     <td>{mat.categoryName}</td>
                     <td>{mat.description}</td>
-                    <td>{mat.projectManagerId}</td>
-                    <td>{mat.siteOperatorId}</td>
+                    {/* <td>{mat.projectManagerId}</td> */}
+                    {/* <td>{mat.siteOperatorId}</td> */}
                   </tr>
                 );
               })}

@@ -1,12 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const DNavbar = () => {
   const navigate = useNavigate();
   return (
     <div>
       <nav className=" navbar navbar-expand-sm bg-light mb-3">
-        <div className=" container-fluid d-flex flex-row-reverse">
+        <div className=" container d-flex flex-row-reverse">
           <ul className="navbar-nav d-flex flex-row-reverse">
             <li className="nav-item">
               <a
@@ -15,7 +15,7 @@ const DNavbar = () => {
                 onClick={() =>
                   confirm("Do you want to logout?")
                     ? navigate("/logout")
-                    : navigate("/admin")
+                    : navigate("/director")
                 }
               >
                 Logout
@@ -29,7 +29,7 @@ const DNavbar = () => {
               >
                 New Registration
               </Link>
-            </li>
+            </li>*/}
             <li className="nav-item">
               <Link
                 to="/update"
@@ -38,7 +38,7 @@ const DNavbar = () => {
               >
                 Update Profile
               </Link>
-            </li> */}
+            </li>
           </ul>
         </div>
       </nav>

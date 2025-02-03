@@ -3,6 +3,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Admin/Footer";
 import AdminNavbar from "./Admin/AdminNavbar";
+import DNavbar from "./Director/DNavbar";
+import IPNavbar from "./IPManager/IPNavbar";
+import PMNavbar from "./ProjectManager/PMNavbar";
+import SONavbar from "./SiteOperator/SONavbar";
 
 const UpdateForm = () => {
   const userdetails = JSON.parse(localStorage.getItem("loggedUser"));
@@ -28,6 +32,8 @@ const UpdateForm = () => {
   } = useForm({ defaultValues: userdetails });
 
   const onSubmit = (data) => {
+    console.log(data);
+
     updateUser(data);
     alert("Update succesfull !!!");
     alert("Profile will update after relogin.");
@@ -44,7 +50,20 @@ const UpdateForm = () => {
 
   return (
     <div className="">
-      <AdminNavbar />
+      {/* <AdminNavbar /> */}
+      {userdetails.acc_id.acc_id == 1 ? (
+        <AdminNavbar />
+      ) : userdetails.acc_id.acc_id == 2 ? (
+        <DNavbar />
+      ) : userdetails.acc_id.acc_id == 3 ? (
+        <IPNavbar />
+      ) : userdetails.acc_id.acc_id == 4 ? (
+        <PMNavbar />
+      ) : userdetails.acc_id.acc_id == 5 ? (
+        <SONavbar />
+      ) : (
+        <div></div>
+      )}
       <div
         className="container  "
         style={{
@@ -183,7 +202,19 @@ const UpdateForm = () => {
                 <button
                   type="button"
                   className="btn btn-warning w-100"
-                  onClick={() => navigate("/admin")}
+                  onClick={() =>
+                    userdetails.acc_id.acc_id == 1
+                      ? navigate("/admin")
+                      : userdetails.acc_id.acc_id == 2
+                      ? navigate("/director")
+                      : userdetails.acc_id.acc_id == 3
+                      ? navigate("/ipmanager")
+                      : userdetails.acc_id.acc_id == 4
+                      ? navigate("/projectmanager")
+                      : userdetails.acc_id.acc_id == 5
+                      ? navigate("/siteoperator")
+                      : navigate("/update")
+                  }
                 >
                   Cancel
                 </button>

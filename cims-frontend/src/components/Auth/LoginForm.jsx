@@ -124,7 +124,7 @@ function LoginForm() {
                 name="password"
                 {...register("password", {
                   required: true,
-                  pattern: /^[A-Za-z0-9*%$_.-]{8,12}$/,
+                  pattern: /^[A-Za-z0-9*%@$_.-]{8,12}$/,
                 })}
               />
               {errors.password && errors.password.type === "required" && (

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import "../../styles/RegistrationForm.css";
 import { useNavigate } from "react-router-dom";
 import AdminNavbar from "./AdminNavbar";
+import Footer from "./Footer";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -15,7 +16,10 @@ const RegistrationForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    registerUser(data);
+    const newData = { ...data, status: "Active" };
+    console.log(newData);
+
+    registerUser(newData);
     alert("Registration succesfull !!!");
     navigate("/admin");
   };
@@ -176,7 +180,7 @@ const RegistrationForm = () => {
                 name="password"
                 {...register("password", {
                   required: true,
-                  pattern: /^[A-Za-z0-9*%$_.-]{8,12}$/,
+                  pattern: /^[A-Za-z0-9*%@$_.-]{8,12}$/,
                 })}
               />
               {errors.password && errors.password.type === "required" && (
@@ -230,6 +234,7 @@ const RegistrationForm = () => {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
