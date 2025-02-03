@@ -22,10 +22,10 @@ public class Material_Project {
 	@Column(name="mp_id")
 	int mp_id;
 	
-	@Column(name="mat_id")//foreign key material
+	@Column(name="mat_id")
 	int mat_id;
 	
-	@Column(name="pj_id")//foreign key project
+	@Column(name="pj_id")
 	int pj_id;
 	
 	@Column(name="quantity")

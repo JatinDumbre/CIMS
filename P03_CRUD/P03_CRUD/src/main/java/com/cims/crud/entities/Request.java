@@ -25,20 +25,23 @@ public class Request {
 	@Column(name="req_id")
 	int req_id;
 	
-	@Column(name="m_id")//foreign key material
-	int m_id;
+	@ManyToOne
+	@JoinColumn(name="m_id")//foreign key material
+	Material m_id;
 	
 	@Column(name="req_qty")
 	float req_qty;
 	
-	@Column(name="req_by")//foreign key user uid
-	int req_by;
+	@ManyToOne
+	@JoinColumn(name="req_by")//foreign key user uid
+	User req_by;
 	
 	@Column(name="req_date")
 	Date rep_date;
 	
-	@Column(name="project_id")//foreign key project
-	int project_id;
+	@ManyToOne
+	@JoinColumn(name="project_id")//foreign key project
+	Project project_id;
 	
 	@ManyToOne
 	@JoinColumn(name="idstatus")

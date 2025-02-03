@@ -1,0 +1,9 @@
+package Classes;
+
+public class Snippet {
+	@GetMapping("/allprojects")
+	    public List<Location> getAllLocations() {
+	        return ipservice.getAllLocations();
+	    }
+}
+

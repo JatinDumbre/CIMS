@@ -23,7 +23,7 @@ public class AdminController {
 	@Autowired
 	AdminService aservice;
 	
-	@GetMapping("/Employee")
+	@GetMapping("/employees")
 	 public ResponseEntity<List<GetAllUser>> getAllEmp() {
         List<GetAllUser> employees = aservice.getAll();
         return ResponseEntity.ok(employees);

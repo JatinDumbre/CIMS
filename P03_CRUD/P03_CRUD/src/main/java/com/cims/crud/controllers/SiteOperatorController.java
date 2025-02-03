@@ -47,6 +47,6 @@ public class SiteOperatorController {
 	 @PutMapping("/update-quantity")
 	 public void updateMaterialQuantity(@RequestBody UpdateMaterialQuantity request) {
 	     soservice.updateMaterialQuantity(request);
-	     
+	  
 	 }
 }

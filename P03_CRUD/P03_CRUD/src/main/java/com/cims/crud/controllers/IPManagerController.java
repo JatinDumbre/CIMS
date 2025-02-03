@@ -6,12 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cims.crud.entities.Location;
+import com.cims.crud.entities.Material;
+import com.cims.crud.entities.Project;
 import com.cims.crud.services.IPManagerService;
 
+import Classes.GetAllProjects;
 import Classes.ProjectDetails;
 import Classes.UpdateProject;
 
@@ -27,9 +33,30 @@ public class IPManagerController {
         return projects;
     }
     
-    @PutMapping("/update-project")
-    public void updateProject(@RequestBody UpdateProject updateP) {  
+    @PutMapping("/update-project/{projectId}")
+    public void updateProject(@PathVariable int projectId,@RequestBody UpdateProject updateP) {  
     	ipservice.updateProject(updateP);
     }
-
+    
+    @PostMapping("/addlocation")
+    public void addLocation(@RequestBody Location location) {
+        ipservice.addLocation(location);
+    }
+    @PostMapping("/addproject")
+    public void addProject(@RequestBody Project project) {
+        ipservice.addProject(project);
+    }
+    @GetMapping("/alllocations")
+    public List<Location> getAllLocations() {
+        return ipservice.getAllLocations();
+    }
+   
+    @GetMapping("/allprojects")
+    public List<GetAllProjects> getAllProjects() {
+        return ipservice.getAllProjects();
+    }
+    @GetMapping("/project/{project_id}")
+    public ProjectDetails getProjects(@PathVariable int project_id) {
+    	return ipservice.getProject(project_id);
+    }
 }

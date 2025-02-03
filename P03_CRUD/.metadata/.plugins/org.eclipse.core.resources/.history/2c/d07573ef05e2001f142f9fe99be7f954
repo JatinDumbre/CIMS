@@ -1,0 +1,21 @@
+package com.cims.crud.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.cims.crud.entities.Category;
+import com.cims.crud.entities.Material;
+import com.cims.crud.entities.Unit;
+
+import jakarta.transaction.Transactional;
+
+@Repository
+public interface MainMaterialRepository extends JpaRepository<Material, Integer> {
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO material (m_name, cat_id, unit_id, description) VALUES (:mName, :catId, :unitId, :description)", nativeQuery = true)
+    int insertMaterial(String mName,Category category,Unit unit,String description);
+}

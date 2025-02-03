@@ -1,0 +1,8 @@
+package com.cims.crud.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.cims.crud.entities.Project;
+
+public interface ProjectRepository extends JpaRepository<Project, Integer>{
+	
+}
