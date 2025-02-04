@@ -1,0 +1,37 @@
+package com.cims.crud.services;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cims.crud.repositories.AdminRepository;
+
+import Classes.GetAllUser;
+
+public class DirectorService {
+	@Autowired
+	AdminRepository arepo;
+	
+	public List<GetAllUser> getAll() {
+	    List<Object[]> results = arepo.findAllEmployees();
+	    List<GetAllUser> employees = new ArrayList<>();
+
+	    for (Object[] row : results) {
+	        employees.add(new GetAllUser(
+	        	(int) row[0], 
+	            (String) row[1], // fname
+	            (String) row[2], // lname
+	            (String) row[3], // mob_no
+	            (String) row[4], // email
+	            (String) row[5], // address
+	            (String) row[6], // access_type (now stored as String)
+	            (String) row[7] //status
+	        ));
+	    }
+
+	    return employees;
+	}
+
+
+}

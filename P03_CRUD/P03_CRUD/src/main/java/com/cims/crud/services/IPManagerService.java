@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cims.crud.entities.Location;
 import com.cims.crud.entities.Material;
 import com.cims.crud.entities.Project;
+import com.cims.crud.entities.User;
 import com.cims.crud.repositories.IPManagerRepository;
 import com.cims.crud.repositories.LocationRepository;
 import com.cims.crud.repositories.ProjectRepository;
@@ -16,6 +17,7 @@ import com.cims.crud.repositories.ProjectRepository;
 import Classes.GetAllProjects;
 import Classes.ProjectDetails;
 import Classes.UpdateProject;
+import Classes.UserIPManager;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -109,4 +111,13 @@ public class IPManagerService {
 	    	return prepo.getAllProjects();
 	    }
 	    
+	    public List<UserIPManager> getAllPM(){
+	    	return iprepo.getProjectManagers();
+	    }
+	    public List<UserIPManager> getAllSO(){
+	    	return iprepo.getSiteOperators();
+	    }
+	    
+	 
+
 }

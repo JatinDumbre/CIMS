@@ -1,0 +1,84 @@
+package com.cims.crud.services;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cims.crud.entities.Location;
+import com.cims.crud.repositories.AdminRepository;
+import com.cims.crud.repositories.IPManagerRepository;
+import com.cims.crud.repositories.LocationRepository;
+import com.cims.crud.repositories.ProjectRepository;
+
+import Classes.GetAllProjects;
+import Classes.GetAllUser;
+import Classes.ProjectDetails;
+
+public class DirectorService {
+	@Autowired
+	AdminRepository arepo;
+	
+	 @Autowired
+	 IPManagerRepository iprepo;
+	 
+	 @Autowired
+	 LocationRepository lrepo;
+	 
+	 @Autowired
+	 ProjectRepository prepo;
+	
+	public List<GetAllUser> getAll() {
+	    List<Object[]> results = arepo.findAllEmployees();
+	    List<GetAllUser> employees = new ArrayList<>();
+
+	    for (Object[] row : results) {
+	        employees.add(new GetAllUser(
+	        	(int) row[0], 
+	            (String) row[1], // fname
+	            (String) row[2], // lname
+	            (String) row[3], // mob_no
+	            (String) row[4], // email
+	            (String) row[5], // address
+	            (String) row[6], // access_type (now stored as String)
+	            (String) row[7] //status
+	        ));
+	    }
+
+	    return employees;
+	}
+	
+	 public List<ProjectDetails> getProjectsWithManagers() {
+	        List<Object[]> results = iprepo.findMaterialsByProjectManager();
+
+	        return results.stream()
+	                .map(obj -> new ProjectDetails(
+	                        (int) obj[0],  // project_id
+	                        (String) obj[1],   // project_name
+	                        (String) obj[2],   // location_name
+	                        (String) obj[3],   // location_address
+	                        (String) obj[4],   // location_city
+	                        (String) obj[5],   // project_manager
+	                        (String) obj[6],   // site_operator
+	                        (int) obj[7],
+	                        (int) obj[8],
+	                        (int) obj[9]
+	                ))
+	                .collect(Collectors.toList());
+	    }
+	    
+	    public ProjectDetails getProject(int projectId) {
+	    	return iprepo.findProjectByProjectManager(projectId);
+	    }
+	    
+	    public List<Location> getAllLocations() {
+	        return lrepo.getAllLocations();
+	    }
+	    
+	    public List<GetAllProjects> getAllProjects(){
+	    	return prepo.getAllProjects();
+	    }
+	    
+
+}

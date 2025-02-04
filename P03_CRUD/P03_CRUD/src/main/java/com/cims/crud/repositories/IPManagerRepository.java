@@ -1,6 +1,7 @@
 package com.cims.crud.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,6 +12,7 @@ import com.cims.crud.entities.Location;
 import com.cims.crud.entities.User;
 
 import Classes.ProjectDetails;
+import Classes.UserIPManager;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -48,5 +50,9 @@ public interface IPManagerRepository extends JpaRepository<User,Integer> {
 	        "WHERE pa.p_id = :projectId")
 	    int updateProjectAllocation(int projectId, int projectManagerId, int siteOperatorId);
 	 
+	 @Query(nativeQuery = true, value ="SELECT  u.user_id,u.fname,u.lname,u.status,u.acc_id  from User u Where u.acc_id = '4' AND u.status='Active'")
+		public List<UserIPManager> getProjectManagers();
 	 
+	 @Query(nativeQuery = true, value ="SELECT  u.user_id,u.fname,u.lname,u.status,u.acc_id  from User u Where u.acc_id = '5' AND u.status='Active'")
+		public List<UserIPManager> getSiteOperators();
 }
