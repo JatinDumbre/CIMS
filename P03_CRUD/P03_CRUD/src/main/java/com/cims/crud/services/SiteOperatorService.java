@@ -75,12 +75,8 @@ public class SiteOperatorService {
 	 }
 
 	 @Transactional
-	 public boolean updateMaterialQuantity(UpdateMaterialQuantity request) {
-	     int updatedRows = mprepo.updateMaterialQuantity(
-	         request.getMaterialId(),
-	         request.getProjectId(),
-	         request.getNewQuantity()
-	     );
-	     return updatedRows > 0; // Returns true if update was successful
+	 public boolean updateMaterialQuantity(int materialId, int projectId, int newQuantity) {
+		 int updatedRows = mprepo.updateMaterialQuantity(materialId, projectId, newQuantity);
+	        return updatedRows > 0; // Returns true if update was successful
 	 }
 }

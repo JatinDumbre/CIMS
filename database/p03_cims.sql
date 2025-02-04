@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `cims_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `cims_db`;
+CREATE DATABASE  IF NOT EXISTS `p03_cims` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `p03_cims`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: cims_db
+-- Host: localhost    Database: p03_cims
 -- ------------------------------------------------------
 -- Server version	8.2.0
 
@@ -87,7 +87,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES (1,'Paud Road','Kothrud','Pune'),(2,'Raisen road','Anand Nagar','Bhopal'),(3,'JVLR','Powai','Mumbai'),(4,'Ujjain road','Bhawarkua','Indore'),(5,'Gangavesh road','Rankala','Kolhapur');
+INSERT INTO `location` VALUES (1,'Paud Road','Kothrud','Pune'),(2,'Raisen road','Anand Nagar','Bhopal'),(3,'JVLR','Powai','Mumbai'),(4,'Ujjain road','Bhawarkua','Indore'),(5,'Gangavesh road','Rankala','Kolhapur'),(6,'Sinhgad Road','Katraj','Pune'),(7,'BMCC Road','Deccan','Pune'),(8,'FC Road','Deccan','Pune');
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +139,7 @@ CREATE TABLE `material_project` (
   KEY `pj_id_idx` (`pj_id`),
   CONSTRAINT `mat_id` FOREIGN KEY (`mat_id`) REFERENCES `material` (`m_id`),
   CONSTRAINT `pj_id` FOREIGN KEY (`pj_id`) REFERENCES `project` (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +148,7 @@ CREATE TABLE `material_project` (
 
 LOCK TABLES `material_project` WRITE;
 /*!40000 ALTER TABLE `material_project` DISABLE KEYS */;
-INSERT INTO `material_project` VALUES (1,1,1,10000),(2,2,1,500),(3,3,2,150),(4,1,2,5000),(5,4,3,100),(6,5,1,899),(7,4,2,600),(8,3,2,60),(9,2,3,125),(10,3,3,631),(11,5,3,541),(12,6,3,74),(13,3,1,570),(14,1,4,426),(15,2,4,147),(16,3,4,156),(17,4,4,214),(18,5,4,320),(19,6,4,98),(20,4,1,73);
+INSERT INTO `material_project` VALUES (1,1,1,999),(2,2,1,250),(3,3,2,124),(4,1,2,98),(5,4,3,100),(6,5,1,899),(7,4,2,600),(9,2,3,125),(10,3,3,631),(11,5,3,541),(12,6,3,74),(13,3,1,570),(14,1,4,426),(15,2,4,147),(16,3,4,156),(17,4,4,214),(18,5,4,320),(19,6,4,98),(20,4,1,73),(21,2,2,91),(25,6,1,776),(26,6,1,65),(27,5,1,1);
 /*!40000 ALTER TABLE `material_project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ CREATE TABLE `project` (
   PRIMARY KEY (`project_id`),
   KEY `loc_id_idx` (`loc_id`),
   CONSTRAINT `loc_id` FOREIGN KEY (`loc_id`) REFERENCES `location` (`loc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +212,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,'Paud road',1),(2,'JVLR Highway',3),(3,'BRTS',2),(4,'National Highway',4);
+INSERT INTO `project` VALUES (1,'Paud Road',2),(2,'JVLR Highway',3),(3,'BRTS',2),(4,'National Highway',4),(5,'Street Road',6),(6,'Road Construction',1);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -356,7 +356,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Admin@12','aditya','patil','9876543210','aditya@gmail.com','Jaipur',1,'Active'),(2,'Admin@12','Anish','Kulkarni','9123456789','anish@gmail.com','Satara',1,'Active'),(3,'Admin@12','Amol','Tripathi','8765437655','amol@gmail.com','Nashik',1,'Active'),(4,'Admin@12','Akshay','Kumar','8765432109','akshay@gmail.com','Pune',1,'Active'),(5,'Admin@12','Amey','Patil','7654321098','amey@gmail.com','Mumbai',1,'Active'),(6,'Direc@12','Darshana','Kumari','7485964152','darshana@gmail.com','Jodhpur',2,'Inactive'),(7,'Direc@12','Dhruv','Deshmukh','5432109876','ritesh@gmail.com','Kolhapur',2,'Active'),(8,'Direc@12','Deepak','Singh','8521436978','deepak@gmail.com','Nagpur',2,'Active'),(9,'Direc@12','Dilip','Kumar','9987654321','dilip@gmail.com','Nashik',2,'Active'),(10,'Direc@12','Dipesh','Bhoir','9988776655','dipesh@gmail.com','Pune',2,'Active'),(11,'Ipman@12','Ishaan','Pande','9345678901','ishaan@gmail.com','Kolhapur',3,'Active'),(12,'Ipman@12','Ian','Singh','8901234567','ian@gmail.com','Nashik',3,'Active'),(13,'Ipman@12','Ivan','Kumar','8596214703','ivan@gmail.com','Nagpur',3,'Active'),(14,'Ipman@12','Issac','Newton','9456789012','issac@gmail.com','Pune',3,'Active'),(15,'Ipman@12','Imran','Patil','7845236987','imran@gmail.com','Mumbai',3,'Active'),(16,'Pmana@12','Prerak','Kulkarni','9632547852','prerak@gmail.com','Nashik',4,'Active'),(17,'Pmana@12','Pankaj','Patil','9191929292','pankaj@gmail.com','Nagpur',4,'Active'),(18,'Pmana@12','Pranav','Pande','7012345678','pranav@gmail.com','Pune',4,'Active'),(19,'Pmana@12','Pratik','Kulkarni','7550012345','pratik@gmail.com','Mumbai',4,'Active'),(20,'Pmana@12','Parth','Kumar','6262938383','parth@gmail.com','Kolhapur',4,'Active'),(21,'Siteop@1','Sangram','Singh','8439265748','sangram@gmail.com','Mumbai',5,'Active'),(22,'Siteop@1','Satish','Kumar','7070798765','satish@gmail.com','Kolhapur',5,'Active'),(23,'Siteop@1','Shubham','Pande','6363654321','shubham@gmail.com','Nagpur',5,'Active'),(24,'Siteop@1','Sachin','tendulkar','9876543874','sachin@gmail.com','Mumbai',5,'Active'),(31,'Admin@12','Abhi','Raj','7654321098','abhi@gmail.com','Mumbai',1,'Inactive'),(32,'Admin@12','Ashwin','Ravi','7654321022','ashwin@gmail.com','Chennai',1,'Inactive'),(33,'Admin@12','Amitrohi','das','9876543233','amitrohi@gmail.com','Jaipur',1,'Inactive');
+INSERT INTO `user` VALUES (1,'Admin@12','aditya','patil','9876543210','aditya@gmail.com','Jaipur',1,'Active'),(2,'Admin@12','Anish','Kulkarni','9123456789','anish@gmail.com','Satara',1,'Inactive'),(3,'Admin@12','Amol','Tripathi','8765437655','amol@gmail.com','Nashik',1,'Active'),(4,'Admin@12','Akshay','Kumar','8765432109','akshay@gmail.com','Pune',1,'Active'),(5,'Admin@12','Amey','Patil','7654321098','amey@gmail.com','Mumbai',1,'Active'),(6,'Direc@12','Darshana','Kumari','7485964152','darshana@gmail.com','Jodhpur',2,'Inactive'),(7,'Direc@12','Dhruv','Deshmukh','5432109876','ritesh@gmail.com','Kolhapur',2,'Active'),(8,'Direc@12','Deepak','Singh','8521436978','deepak@gmail.com','Nagpur',2,'Active'),(9,'Direc@12','Dilip','Kumar','9987654321','dilip@gmail.com','Nashik',2,'Active'),(10,'Direc@12','Dipesh','Bhoir','9988776655','dipesh@gmail.com','Pune',2,'Active'),(11,'Ipman@12','Ishaan','Pande','9345678901','ishaan@gmail.com','Kolhapur',3,'Active'),(12,'Ipman@12','Ian','Singh','8901234567','ian@gmail.com','Nashik',3,'Active'),(13,'Ipman@12','Ivan','Kumar','8596214703','ivan@gmail.com','Nagpur',3,'Active'),(14,'Ipman@12','Issac','Newton','9456789012','issac@gmail.com','Pune',3,'Active'),(15,'Ipman@12','Imran','Patil','7845236987','imran@gmail.com','Mumbai',3,'Active'),(16,'Pmana@12','Prerak','Kulkarni','9632547852','prerak@gmail.com','Nashik',4,'Active'),(17,'Pmana@12','Pankaj','Patil','9191929292','pankaj@gmail.com','Nagpur',4,'Active'),(18,'Pmana@12','Pranav','Pande','7012345678','pranav@gmail.com','Pune',4,'Active'),(19,'Pmana@12','Pratik','Kulkarni','7550012345','pratik@gmail.com','Mumbai',4,'Active'),(20,'Pmana@12','Parth','Kumar','6262938383','parth@gmail.com','Kolhapur',4,'Active'),(21,'Siteop@1','Sangram','Singh','8439265748','sangram@gmail.com','Mumbai',5,'Active'),(22,'Siteop@1','Satish','Kumar','7070798765','satish@gmail.com','Kolhapur',5,'Active'),(23,'Siteop@1','Shubham','Pande','6363654321','shubham@gmail.com','Nagpur',5,'Active'),(24,'Siteop@1','Sachin','tendulkar','9876543874','sachin@gmail.com','Mumbai',5,'Active'),(31,'Admin@12','Abhi','Raj','7654321098','abhi@gmail.com','Mumbai',1,'Inactive'),(32,'Admin@12','Ashwin','Ravi','7654321022','ashwin@gmail.com','Chennai',1,'Inactive'),(33,'Admin@12','Amitrohi','das','9876543233','amitrohi@gmail.com','Jaipur',1,'Inactive');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,7 +385,7 @@ CREATE TABLE `user_archive` (
 
 LOCK TABLES `user_archive` WRITE;
 /*!40000 ALTER TABLE `user_archive` DISABLE KEYS */;
-INSERT INTO `user_archive` VALUES (25,'Sandeep','Singh','9773256','sandeep@gmail.com','Pune',5),(29,'Amit','Narayan','9876543218','amit@gmail.com','Jaipur',2),(30,'Amitabh','Murti','9635874569','amitabh@gmail.com','Jodhpur',4),(31,'Abhi','Raj','7654321098','abhi@gmail.com','Mumbai',1),(33,'Amitrohi','das','9876543233','amitrohi@gmail.com','Jaipur',1);
+INSERT INTO `user_archive` VALUES (2,'Anish','Kulkarni','9123456789','anish@gmail.com','Satara',1),(25,'Sandeep','Singh','9773256','sandeep@gmail.com','Pune',5),(29,'Amit','Narayan','9876543218','amit@gmail.com','Jaipur',2),(30,'Amitabh','Murti','9635874569','amitabh@gmail.com','Jodhpur',4),(31,'Abhi','Raj','7654321098','abhi@gmail.com','Mumbai',1),(33,'Amitrohi','das','9876543233','amitrohi@gmail.com','Jaipur',1);
 /*!40000 ALTER TABLE `user_archive` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -398,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-02 11:38:34
+-- Dump completed on 2025-02-04 13:43:54

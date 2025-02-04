@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cims.crud.entities.Location;
 import com.cims.crud.entities.Material;
 import com.cims.crud.entities.Project;
+import com.cims.crud.entities.User;
 import com.cims.crud.services.IPManagerService;
 
 import Classes.GetAllProjects;
 import Classes.ProjectDetails;
 import Classes.UpdateProject;
+import Classes.UserIPManager;
 
 @CrossOrigin(origins = "http://localhost:3003")
 @RestController
@@ -59,4 +61,15 @@ public class IPManagerController {
     public ProjectDetails getProjects(@PathVariable int project_id) {
     	return ipservice.getProject(project_id);
     }
+    @GetMapping("/allprojectmanager")
+    public List<UserIPManager> getAllProjectManager(){
+    	return ipservice.getAllPM();
+    }
+    @GetMapping("/allsiteoperator")
+    public List<UserIPManager> getAllSiteOperator(){
+    	return ipservice.getAllSO();
+    }
+    
+  
+
 }

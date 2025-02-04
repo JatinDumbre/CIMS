@@ -1,0 +1,57 @@
+package com.cims.crud.repositories;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.cims.crud.entities.Location;
+import com.cims.crud.entities.User;
+
+import Classes.ProjectDetails;
+import jakarta.transaction.Transactional;
+
+@Repository
+public interface IPManagerRepository extends JpaRepository<User,Integer> {
+	@Query(nativeQuery=true,value="SELECT p1.project_id, p1.project_name, l1.loc_name,l1.loc_add,l1.loc_city, pm.fname AS project_manager,so.fname AS site_operator,pa1.pm_id, pa1.so_id, l1.loc_id"
+			+ " FROM project p1"
+			+ " JOIN location l1 ON p1.loc_id = l1.loc_id"
+			+ " JOIN project_allocation pa1 ON pa1.p_id = p1.project_id"
+			+ " JOIN user pm ON pm.user_id = pa1.pm_id"
+			+ " JOIN user so ON so.user_id = pa1.so_id;")
+	List<Object[]> findMaterialsByProjectManager();
+	
+	@Query(nativeQuery=true,value="SELECT p1.project_id, p1.project_name, l1.loc_name,l1.loc_add,l1.loc_city, pm.fname AS project_manager,so.fname AS site_operator,pa1.pm_id, pa1.so_id, l1.loc_id"
+			+ " FROM project p1"
+			+ " JOIN location l1 ON p1.loc_id = l1.loc_id"
+			+ " JOIN project_allocation pa1 ON pa1.p_id = p1.project_id"
+			+ " JOIN user pm ON pm.user_id = pa1.pm_id"
+			+ " JOIN user so ON so.user_id = pa1.so_id"
+			+ " where p1.project_id =:projectId;")
+	ProjectDetails findProjectByProjectManager(int projectId);
+	
+	 @Modifying
+	 @Transactional
+	 @Query(nativeQuery = true, value =
+	        "UPDATE project p " +
+	        "SET p.project_name = :projectName, p.loc_id = :locationId " +
+	        "WHERE p.project_id = :projectId")
+	    int updateProject(int projectId, String projectName,  int locationId);
+	 
+	 @Modifying
+	 @Transactional
+	 @Query(nativeQuery = true, value =
+	        "UPDATE project_allocation pa " +
+	        "SET pa.pm_id = :projectManagerId, pa.so_id = :siteOperatorId " +
+	        "WHERE pa.p_id = :projectId")
+	    int updateProjectAllocation(int projectId, int projectManagerId, int siteOperatorId);
+	 
+	 @Query(nativeQuery = true, value ="SELECT  u  from User u Where u.acc_id = 4 AND u.status='Active'")
+		public List<User> getProjectManagers();
+	 
+	 @Query(nativeQuery = true, value ="SELECT  u  from User u Where u.acc_id = 5 AND u.status='Active'")
+		public List<User> getSiteOperators();
+}

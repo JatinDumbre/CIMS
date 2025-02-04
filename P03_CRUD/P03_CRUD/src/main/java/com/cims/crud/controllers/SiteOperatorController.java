@@ -44,9 +44,9 @@ public class SiteOperatorController {
 	        
 	    }
 	
-	 @PutMapping("/update-quantity")
-	 public void updateMaterialQuantity(@RequestBody UpdateMaterialQuantity request) {
-	     soservice.updateMaterialQuantity(request);
+	 @PutMapping("/update-quantity/{materialId}")
+	 public void updateMaterialQuantity(@PathVariable int materialId,@RequestBody UpdateMaterialQuantity request) {
+	     soservice.updateMaterialQuantity(materialId,request.getProjectId(),request.getNewQuantity());
 	  
 	 }
 }
