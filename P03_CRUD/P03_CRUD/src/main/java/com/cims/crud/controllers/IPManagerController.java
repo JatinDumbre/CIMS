@@ -20,6 +20,7 @@ import com.cims.crud.services.IPManagerService;
 
 import Classes.GetAllProjects;
 import Classes.ProjectDetails;
+import Classes.ProjectInsertDTO;
 import Classes.UpdateProject;
 import Classes.UserIPManager;
 
@@ -70,6 +71,10 @@ public class IPManagerController {
     	return ipservice.getAllSO();
     }
     
+    @PostMapping("/addprojectdas")
+    public void addProject(@RequestBody ProjectInsertDTO projectDTO) {
+        ipservice.addProject(projectDTO);
+    }
   
 
 }

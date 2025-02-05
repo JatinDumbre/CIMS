@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.cims.crud.repositories.ProjectManagerRepository"/>
     <fullyQualifiedTypeName name="com.cims.crud.services.ProjectManagerService"/>
     <fullyQualifiedTypeName name="com.cims.crud.repositories.SiteOperatorRepository"/>
     <fullyQualifiedTypeName name="com.cims.crud.services.SiteOperatorService"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="com.cims.crud.entities.User"/>
     <fullyQualifiedTypeName name="Classes.UserIPManager"/>
+    <fullyQualifiedTypeName name="Classes.ProjectInsertDTO"/>
 </qualifiedTypeNameHistroy>

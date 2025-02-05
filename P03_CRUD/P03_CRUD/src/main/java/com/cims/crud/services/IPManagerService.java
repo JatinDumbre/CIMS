@@ -16,6 +16,7 @@ import com.cims.crud.repositories.ProjectRepository;
 
 import Classes.GetAllProjects;
 import Classes.ProjectDetails;
+import Classes.ProjectInsertDTO;
 import Classes.UpdateProject;
 import Classes.UserIPManager;
 import jakarta.transaction.Transactional;
@@ -118,6 +119,24 @@ public class IPManagerService {
 	    	return iprepo.getSiteOperators();
 	    }
 	    
-	 
+	    @Transactional
+	    public void addProject(ProjectInsertDTO projectDTO) {
+	        int locId = projectDTO.getLoc_id();
 
+	        // Check if location exists
+	        Integer existingLocId = prepo.checkLocationExists(locId);
+	        if (existingLocId == null) {
+	            // Insert Location
+	            prepo.insertLocation(locId, projectDTO.getLocName(), projectDTO.getLocAdd(), projectDTO.getLocCity());
+	        }
+
+	        // Insert Project
+	        prepo.insertProjects(projectDTO.getProjectName(), locId);
+
+	        // Get last inserted project ID
+	        int projectId = prepo.getLastInsertedProjectId();
+
+	        // Insert Project Allocation
+	        prepo.insertProjectAllocation(projectId, projectDTO.getProjectManagerId(), projectDTO.getSiteOperatorId());
+	    }
 }
