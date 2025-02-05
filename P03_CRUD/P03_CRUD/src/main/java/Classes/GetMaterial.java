@@ -1,6 +1,7 @@
 package Classes;
 
 public class GetMaterial {
+	private int projectId;
 	private int mat_id;
     private String projectName;
     private String materialName;
@@ -10,10 +11,12 @@ public class GetMaterial {
     private String description;
     private int projectManagerId;
     private int siteOperatorId;
+    
 
     // Constructor
-    public GetMaterial(int mat_id,String projectName, String materialName, Float quantity, String unitName, 
+    public GetMaterial(int projectId, int mat_id,String projectName, String materialName, Float quantity, String unitName, 
                        String categoryName, String description, int projectManagerId, int siteOperatorId) {
+    	this.projectId=projectId;
     	this.mat_id=mat_id;
         this.projectName = projectName;
         this.materialName = materialName;
@@ -23,9 +26,16 @@ public class GetMaterial {
         this.description = description;
         this.projectManagerId = projectManagerId;
         this.siteOperatorId = siteOperatorId;
+        
     }
 
     // Getters and Setters
+    public int getProjectId() {
+    	return projectId;
+    }
+    public void setProjectId(int projectId) {
+    	this.projectId=projectId;
+    }
     public int getMatId() {
     	return mat_id;
     }
@@ -55,5 +65,8 @@ public class GetMaterial {
 
     public int getSiteOperatorId() { return siteOperatorId; }
     public void setSiteOperatorId(int siteOperatorId) { this.siteOperatorId = siteOperatorId; }
+
+    
+    
 }
 
