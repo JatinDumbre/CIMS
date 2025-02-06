@@ -119,18 +119,40 @@ public class IPManagerService {
 	    	return iprepo.getSiteOperators();
 	    }
 	    
+//	    @Transactional
+//	    public void addProject(ProjectInsertDTO projectDTO) {
+//	        int locId = projectDTO.getLoc_id();
+//
+//	        // Check if location exists
+//	        Integer existingLocId = prepo.checkLocationExists(locId);
+//	        if (existingLocId == null) {
+//	            // Insert Location
+//	            prepo.insertLocation(locId, projectDTO.getLocName(), projectDTO.getLocAdd(), projectDTO.getLocCity());
+//	        }
+//
+//	        // Insert Project
+//	        prepo.insertProjects(projectDTO.getProjectName(), locId);
+//
+//	        // Get last inserted project ID
+//	        int projectId = prepo.getLastInsertedProjectId();
+//
+//	        // Insert Project Allocation
+//	        prepo.insertProjectAllocation(projectId, projectDTO.getProjectManagerId(), projectDTO.getSiteOperatorId());
+//	    }
 	    @Transactional
 	    public void addProject(ProjectInsertDTO projectDTO) {
-	        int locId = projectDTO.getLoc_id();
+	        // Check if location already exists
+	        Integer locId = prepo.checkLocationExists(projectDTO.getLocName(), projectDTO.getLocAdd(), projectDTO.getLocCity());
 
-	        // Check if location exists
-	        Integer existingLocId = prepo.checkLocationExists(locId);
-	        if (existingLocId == null) {
-	            // Insert Location
-	            prepo.insertLocation(locId, projectDTO.getLocName(), projectDTO.getLocAdd(), projectDTO.getLocCity());
+	        if (locId == null) {
+	            // Insert new location (AUTO_INCREMENT will generate loc_id)
+	            prepo.insertLocation(projectDTO.getLocName(), projectDTO.getLocAdd(), projectDTO.getLocCity());
+	            
+	            // Retrieve the newly generated loc_id
+	            locId = prepo.getLastInsertedLocationId();
 	        }
 
-	        // Insert Project
+	        // Insert Project with the retrieved loc_id
 	        prepo.insertProjects(projectDTO.getProjectName(), locId);
 
 	        // Get last inserted project ID
@@ -139,4 +161,6 @@ public class IPManagerService {
 	        // Insert Project Allocation
 	        prepo.insertProjectAllocation(projectId, projectDTO.getProjectManagerId(), projectDTO.getSiteOperatorId());
 	    }
+
+
 }
