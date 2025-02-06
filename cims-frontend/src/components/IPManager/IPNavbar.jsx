@@ -21,15 +21,24 @@ const IPNavbar = () => {
                 Logout
               </a>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link
-                to="/register"
+                to="/allLocations"
                 className="nav-link px-3 nav-links"
                 style={{ color: "orange" }}
               >
-                New Registration
+                Locations
               </Link>
-            </li> */}
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/allProjects"
+                className="nav-link px-3 nav-links"
+                style={{ color: "orange" }}
+              >
+                Projects
+              </Link>
+            </li>
             <li className="nav-item">
               <Link
                 to="/update"

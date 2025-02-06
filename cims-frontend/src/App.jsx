@@ -14,6 +14,16 @@ import { useSelector } from "react-redux";
 import LogoutComp from "./components/Auth/LogoutComp";
 import UpdateForm from "./components/UpdateForm";
 import AddMaterialForm from "./components/SiteOperator/AddMaterialForm";
+import UpdateProject from "./components/IPManager/UpdateProject";
+import AboutPage from "./components/AboutPage";
+import AddLocation from "./components/IPManager/AddLocation";
+import UpdateMaterial from "./components/SiteOperator/UpdateMaterial";
+import AllLocations from "./components/IPManager/AllLocations";
+import AllProjects from "./components/IPManager/AllProjects";
+import AddProject from "./components/IPManager/AddProject";
+import AllEmployees from "./components/Director/AllEmployees";
+import AllProjectss from "./components/Director/AllProjectss";
+import Locations from "./components/Director/Locations";
 function App() {
   const mystate = useSelector((state) => state.logged);
   return (
@@ -29,6 +39,15 @@ function App() {
                   style={{ color: "orange" }}
                 >
                   Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/aboutPage"
+                  className="nav-link px-3 nav-links "
+                  style={{ color: "orange" }}
+                >
+                  About
                 </Link>
               </li>
               <li className="nav-item">
@@ -56,6 +75,16 @@ function App() {
         <Route path="/logout" element={<LogoutComp />} />
         <Route path="/update" element={<UpdateForm />} />
         <Route path="/requestMatToIP" element={<AddMaterialForm />} />
+        <Route path="/updateProject" element={<UpdateProject />} />
+        <Route path="/aboutPage" element={<AboutPage />} />
+        <Route path="/addLocation" element={<AddLocation />} />
+        <Route path="/updateMaterial" element={<UpdateMaterial />} />
+        <Route path="/allLocations" element={<AllLocations />} />
+        <Route path="/allProjects" element={<AllProjects />} />
+        <Route path="/addProject" element={<AddProject />} />
+        <Route path="/allEmployees" element={<AllEmployees />} />
+        <Route path="/allprojectss" element={<AllProjectss />} />
+        <Route path="/locations" element={<Locations />} />
       </Routes>
     </div>
   );

@@ -15,14 +15,14 @@ const AddMaterialForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    const newData = { ...data, so_id: userid };
+    const newData = { ...data, soId: userid };
     console.log(newData);
-    requestMaterial(newData);
+    addMaterial(newData);
     alert("Request sent succesfull !!!");
     navigate("/siteoperator");
   };
 
-  const requestMaterial = async (matdata) => {
+  const addMaterial = async (matdata) => {
     await fetch("http://localhost:8033/addMaterial", {
       method: "POST",
       body: JSON.stringify(matdata),
