@@ -73,12 +73,12 @@ DROP TABLE IF EXISTS `location`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `location` (
-  `loc_id` int NOT NULL,
+  `loc_id` int NOT NULL AUTO_INCREMENT,
   `loc_name` varchar(100) NOT NULL,
   `loc_add` varchar(255) NOT NULL,
   `loc_city` varchar(45) NOT NULL,
   PRIMARY KEY (`loc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +87,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES (1,'Paud Road','Kothrud','Pune'),(2,'Raisen road','Anand Nagar','Bhopal'),(3,'JVLR','Powai','Mumbai'),(4,'Ujjain road','Bhawarkua','Indore'),(5,'Gangavesh road','Rankala','Kolhapur'),(6,'Sinhgad Road','Katraj','Pune'),(7,'BMCC Road','Deccan','Pune'),(8,'FC Road','Deccan','Pune');
+INSERT INTO `location` VALUES (1,'Paud Road','Kothrud','Pune'),(2,'Raisen road','Anand Nagar','Bhopal'),(3,'JVLR','Powai','Mumbai'),(4,'Ujjain road','Bhawarkua','Indore'),(5,'Gangavesh road','Rankala','Kolhapur'),(6,'Sinhgad Road','Katraj','Pune'),(7,'BMCC Road','Deccan','Pune'),(8,'FC Road','Deccan','Pune'),(9,'Lakshmi Road','Pimri','Pune'),(10,'Shivajinagar','123 Main Street','Pune'),(11,'Gokhale','Swargate','Pune'),(12,'Ram Nagar','Ayodhya Road','Ayodhya'),(16,'Ram Nagar1','Ayodhya Road1','Ayodhya1'),(17,'Sb Road','Near Mall','Pune'),(18,'Jejuri Road','Market yard','Jejuri');
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +148,7 @@ CREATE TABLE `material_project` (
 
 LOCK TABLES `material_project` WRITE;
 /*!40000 ALTER TABLE `material_project` DISABLE KEYS */;
-INSERT INTO `material_project` VALUES (1,1,1,999),(2,2,1,250),(3,3,2,124),(4,1,2,98),(5,4,3,100),(6,5,1,899),(7,4,2,600),(9,2,3,125),(10,3,3,631),(11,5,3,541),(12,6,3,74),(13,3,1,570),(14,1,4,426),(15,2,4,147),(16,3,4,156),(17,4,4,214),(18,5,4,320),(19,6,4,98),(20,4,1,73),(21,2,2,91),(25,6,1,776),(26,6,1,65),(27,5,1,1);
+INSERT INTO `material_project` VALUES (1,1,1,100),(2,2,1,250),(3,3,2,124),(4,1,2,98),(5,4,3,100),(6,5,1,899),(7,4,2,600),(9,2,3,125),(10,3,3,631),(11,5,3,541),(12,6,3,74),(13,3,1,570),(14,1,4,426),(15,2,4,147),(16,3,4,156),(17,4,4,214),(18,5,4,320),(19,6,4,98),(20,4,1,73),(21,2,2,91),(25,6,1,776),(26,6,1,65),(27,5,1,1);
 /*!40000 ALTER TABLE `material_project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +176,7 @@ CREATE TABLE `material_request` (
   CONSTRAINT `project_id` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`),
   CONSTRAINT `req_by` FOREIGN KEY (`req_by`) REFERENCES `user` (`user_id`),
   CONSTRAINT `status_id` FOREIGN KEY (`status_id`) REFERENCES `status` (`idstatus`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +185,7 @@ CREATE TABLE `material_request` (
 
 LOCK TABLES `material_request` WRITE;
 /*!40000 ALTER TABLE `material_request` DISABLE KEYS */;
-INSERT INTO `material_request` VALUES (1,1,5000,22,'2024-10-11',2,1),(2,3,120,22,'2024-10-11',2,2),(3,5,50,21,'2024-12-12',1,3);
+INSERT INTO `material_request` VALUES (1,1,5000,22,'2024-10-11',2,3),(2,3,120,22,'2024-10-11',2,2),(3,5,50,21,'2024-12-12',1,3),(4,2,879,16,'2025-02-05',8,2),(5,4,300,20,'2025-02-05',1,1),(6,6,180,18,'2025-02-06',3,3);
 /*!40000 ALTER TABLE `material_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ CREATE TABLE `project` (
   PRIMARY KEY (`project_id`),
   KEY `loc_id_idx` (`loc_id`),
   CONSTRAINT `loc_id` FOREIGN KEY (`loc_id`) REFERENCES `location` (`loc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +212,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,'Paud Road',2),(2,'JVLR Highway',3),(3,'BRTS',2),(4,'National Highway',4),(5,'Street Road',6),(6,'Road Construction',1);
+INSERT INTO `project` VALUES (1,'Paud Road',2),(2,'JVLR Highway',3),(3,'BRTS',2),(4,'National Highway',4),(5,'Street Road',6),(6,'Road Construction',1),(8,'Skyline Towers',10),(9,'Lokmat Building',11),(10,'Ram Jhula',12),(13,'Ram Jhula1',16),(14,'Saptashrungi Temple',17),(15,'Khandoba Temple',18);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +235,7 @@ CREATE TABLE `project_allocation` (
   CONSTRAINT `p_id` FOREIGN KEY (`p_id`) REFERENCES `project` (`project_id`),
   CONSTRAINT `pm_id` FOREIGN KEY (`pm_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `so_id` FOREIGN KEY (`so_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +244,7 @@ CREATE TABLE `project_allocation` (
 
 LOCK TABLES `project_allocation` WRITE;
 /*!40000 ALTER TABLE `project_allocation` DISABLE KEYS */;
-INSERT INTO `project_allocation` VALUES (1,1,16,21),(2,2,17,22),(3,3,18,23),(4,4,19,24);
+INSERT INTO `project_allocation` VALUES (1,1,20,21),(2,2,17,22),(3,3,18,23),(4,4,19,24),(5,8,16,21),(6,9,18,24),(7,10,16,21),(8,13,17,22),(9,14,18,24),(10,15,16,21);
 /*!40000 ALTER TABLE `project_allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +265,7 @@ CREATE TABLE `report` (
   KEY `gen_by_idx` (`gen_by`),
   CONSTRAINT `gen_by` FOREIGN KEY (`gen_by`) REFERENCES `user` (`user_id`),
   CONSTRAINT `proj_id` FOREIGN KEY (`proj_id`) REFERENCES `project` (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,7 +274,7 @@ CREATE TABLE `report` (
 
 LOCK TABLES `report` WRITE;
 /*!40000 ALTER TABLE `report` DISABLE KEYS */;
-INSERT INTO `report` VALUES (1,1,6,'2024-10-12'),(2,2,6,'2024-12-15');
+INSERT INTO `report` VALUES (1,1,11,'2024-10-12'),(2,2,11,'2024-12-15'),(4,1,21,'2025-02-05'),(5,2,22,'2025-02-05'),(6,1,11,'2025-02-05'),(7,2,11,'2025-02-05'),(8,3,11,'2025-02-05'),(9,1,11,'2025-02-05'),(10,1,11,'2025-02-05'),(11,1,11,'2025-02-05'),(12,1,11,'2025-02-06'),(13,1,11,'2025-02-06'),(14,1,11,'2025-02-06');
 /*!40000 ALTER TABLE `report` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +298,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'Requested by PM to SO'),(2,'Approve by SO to PM'),(3,'Requested by SO to IP Manager'),(4,'Approve by IP Manager to SO'),(5,'Reject by IP Manager to SO'),(6,'Hold by IP Manager'),(7,'Received by SO');
+INSERT INTO `status` VALUES (1,'Requested'),(2,'Approved'),(3,'Rejected'),(4,'Hold');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-04 13:43:54
+-- Dump completed on 2025-02-06 17:13:57
