@@ -16,6 +16,9 @@ const AboutPage = () => {
         >
           <i>
             Construction Inventory Management <br /> System
+
+
+            
           </i>
         </h1> */}
       </div>
