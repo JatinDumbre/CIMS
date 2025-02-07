@@ -89,7 +89,7 @@ const IPManagerHome = () => {
 
                 count++;
                 return (
-                  <tr className="text-center" key={count}>
+                  <tr className="text-center" key={project.projectId}>
                     <td>{count}</td>
                     <td>{project.projectName}</td>
                     <td>{project.locationAddress}</td>
