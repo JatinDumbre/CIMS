@@ -19,7 +19,7 @@ const AddProject = () => {
   } = useForm();
 
   useEffect(() => {
-    fetch("http://localhost:8033/allpmysqlrojects")
+    fetch("http://localhost:8033/allprojects")
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data);

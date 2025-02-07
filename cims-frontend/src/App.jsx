@@ -24,6 +24,8 @@ import AddProject from "./components/IPManager/AddProject";
 import AllEmployees from "./components/Director/AllEmployees";
 import AllProjectss from "./components/Director/AllProjectss";
 import Locations from "./components/Director/Locations";
+import PMRequest from "./components/ProjectManager/PMRequest";
+import AllRequests from "./components/SiteOperator/AllRequests";
 function App() {
   const mystate = useSelector((state) => state.logged);
   return (
@@ -41,7 +43,7 @@ function App() {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   to="/aboutPage"
                   className="nav-link px-3 nav-links "
@@ -49,7 +51,7 @@ function App() {
                 >
                   About
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <Link
                   to="/login"
@@ -85,6 +87,8 @@ function App() {
         <Route path="/allEmployees" element={<AllEmployees />} />
         <Route path="/allprojectss" element={<AllProjectss />} />
         <Route path="/locations" element={<Locations />} />
+        <Route path="/requestMaterialToSiteOperator" element={<PMRequest />} />
+        <Route path="/allRequests" element={<AllRequests />} />
       </Routes>
     </div>
   );
