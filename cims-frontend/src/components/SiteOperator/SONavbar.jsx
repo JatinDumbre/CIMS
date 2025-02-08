@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const SONavbar = () => {
   const navigate = useNavigate();
+  const userid = JSON.parse(localStorage.getItem("loggedUser")).user_id;
+  console.log(userid);
+
+  const [materials, setMaterials] = useState();
+  useEffect(() => {
+    fetch("http://localhost:8033/siteOp/" + userid)
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+
+        setMaterials(data);
+        console.log(materials);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
   return (
     <div>
@@ -31,6 +48,25 @@ const SONavbar = () => {
                 Add Material
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link
+                to="/allRequests"
+                className="nav-link px-3 nav-links"
+                style={{ color: "orange" }}
+                // name={materials[0].projectId}
+                onClick={(e) => {
+                  // console.log(e.target.name);
+                  localStorage.setItem(
+                    "projectid",
+                    JSON.stringify(materials[0].projectId)
+                  );
+                }}
+              >
+                All Requests
+              </Link>
+            </li>
+
             <li className="nav-item">
               <Link
                 to="/update"

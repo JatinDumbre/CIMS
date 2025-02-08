@@ -70,7 +70,7 @@ const AdminHome = () => {
 
       <div className="container">
         <div className="rounded userMessage text-center mt-5 me-5 ms-5 mb-4 p-3  bg-light">
-          <h2>Welcome, {userData.fname}</h2>
+          <h2>Welcome {userData.fname}</h2>
         </div>
 
         <div className="empTable ">

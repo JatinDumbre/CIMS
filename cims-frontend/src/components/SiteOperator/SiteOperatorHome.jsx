@@ -37,7 +37,7 @@ const SiteOperatorHome = () => {
       <SONavbar />
       <div className="container">
         <div className="rounded userMessage text-center mt-5 me-5 ms-5 mb-4 p-3  bg-light">
-          <h2>Welcome, {userData.fname}</h2>
+          <h2>Welcome {userData.fname}</h2>
         </div>
 
         <div className="d-flex justify-content-around info mt-5 mb-5">
@@ -61,6 +61,7 @@ const SiteOperatorHome = () => {
                 <th scope="col">Units</th>
                 <th scope="col">Category</th>
                 <th scope="col">Description</th>
+                <th scope="col">Action</th>
                 {/* <th scope="col">Project Manager Id</th> */}
                 {/* <th scope="col">Site Operator Id</th> */}
               </tr>
@@ -77,8 +78,25 @@ const SiteOperatorHome = () => {
                     <td>{mat.unitName}</td>
                     <td>{mat.categoryName}</td>
                     <td>{mat.description}</td>
-                    {/* <td>{mat.projectManagerId}</td> */}
-                    {/* <td>{mat.siteOperatorId}</td> */}
+                    <td>
+                      <button
+                        className="btn btn-primary"
+                        type="button"
+                        name={mat.matId}
+                        onClick={(e) => {
+                          console.log(e.target.name);
+                          localStorage.setItem(
+                            "mid",
+                            JSON.stringify(e.target.name)
+                          );
+                          confirm("Do you want to update material?")
+                            ? navigate("/updateMaterial", { state: mat })
+                            : alert("not updated");
+                        }}
+                      >
+                        Update
+                      </button>
+                    </td>
                   </tr>
                 );
               })}

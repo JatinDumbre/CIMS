@@ -39,7 +39,7 @@ const ProjectManagerHome = () => {
       <PMNavbar />
       <div className="container">
         <div className="rounded userMessage text-center mt-5 me-5 ms-5 mb-4 p-3  bg-light">
-          <h2>Welcome, {userData.fname}</h2>
+          <h2>Welcome {userData.fname}</h2>
         </div>
 
         <div className="mTable ">
@@ -54,7 +54,7 @@ const ProjectManagerHome = () => {
                 <th scope="col">Units</th>
                 {/* <th scope="col">Category</th> */}
                 <th scope="col">Description</th>
-                {/* <th scope="col">Project Manager Id</th> */}
+                <th scope="col">Action</th>
                 {/* <th scope="col">Site Operator Id</th> */}
               </tr>
             </thead>
@@ -62,7 +62,7 @@ const ProjectManagerHome = () => {
               {materials.map((mat) => {
                 count++;
                 return (
-                  <tr className="text-center" key={mat.m_id}>
+                  <tr className="text-center" key={mat.matId}>
                     <td>{count}</td>
                     {/* <td>{mat.projectName}</td> */}
                     <td>{mat.materialName}</td>
@@ -70,7 +70,32 @@ const ProjectManagerHome = () => {
                     <td>{mat.unitName}</td>
                     {/* <td>{mat.categoryName}</td> */}
                     <td>{mat.description}</td>
-                    {/* <td>{mat.projectManagerId}</td> */}
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        type="button"
+                        name={mat.matId}
+                        onClick={(e) => {
+                          console.log(e.target.name);
+                          localStorage.setItem(
+                            "mid",
+                            JSON.stringify(e.target.name)
+                          );
+                          confirm(
+                            `Do you want to request ${mat.materialName} ?`
+                          )
+                            ? navigate("/requestMaterialToSiteOperator", {
+                                state: {
+                                  materialName: mat.materialName,
+                                  unitName: mat.unitName,
+                                },
+                              })
+                            : alert("not updated");
+                        }}
+                      >
+                        Request
+                      </button>
+                    </td>
                     {/* <td>{mat.siteOperatorId}</td> */}
                   </tr>
                 );
