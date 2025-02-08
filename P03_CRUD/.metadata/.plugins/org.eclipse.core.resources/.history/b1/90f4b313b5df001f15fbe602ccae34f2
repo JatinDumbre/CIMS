@@ -1,5 +1,0 @@
-package com.cims.crud.repositories;
-
-public interface ProjectManager {
-
-}

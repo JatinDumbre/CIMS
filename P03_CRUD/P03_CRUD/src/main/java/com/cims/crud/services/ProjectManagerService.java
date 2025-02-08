@@ -11,6 +11,7 @@ import com.cims.crud.repositories.ProjectManagerRepository;
 import com.cims.crud.repositories.UserRepository;
 
 import Classes.GetMaterialForPM;
+import Classes.SiteOp;
 
 @Service
 public class ProjectManagerService {
@@ -34,5 +35,9 @@ public class ProjectManagerService {
 
         return materials;
     }
+	
+	public SiteOp getProject(int pmId) {
+		 return pmrepo.getProjectId(pmId);
+	 }
 
 }

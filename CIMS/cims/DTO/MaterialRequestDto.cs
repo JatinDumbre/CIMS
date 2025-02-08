@@ -4,6 +4,6 @@
     {
         public string MaterialName { get; set; } = null!;
         public float ReqQty { get; set; }
-        public string ProjectName { get; set; } = null!;
+        public int ProjectId { get; set; } 
     }
 }

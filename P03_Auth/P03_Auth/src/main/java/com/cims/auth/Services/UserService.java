@@ -3,6 +3,7 @@ package com.cims.auth.Services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cims.auth.Entities.Access;
@@ -34,7 +35,6 @@ public class UserService {
 		User u = new User(password,fname,lname,mobno,email,address,new Access( acc_id, accrepo.getAccessType(acc_id)),status);
 		return urepo.save(u);
 	}
-	
 	public User getUserById(int userid) {
 		Optional<User> user=urepo.findById(userid);
 		return user.orElseThrow(()-> new RuntimeException("User not Found"));

@@ -1,0 +1,13 @@
+package Classes;
+
+import lombok.Data;
+
+@Data
+public class SiteOp {
+	int projectId;
+	
+	public SiteOp() {}
+	public SiteOp(int projectId) {
+		this.projectId=projectId;
+	}
+}
