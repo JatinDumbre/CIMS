@@ -13,6 +13,7 @@ import com.cims.crud.repositories.SiteOperatorRepository;
 import com.cims.crud.repositories.UserRepository;
 
 import Classes.GetMaterial;
+import Classes.SiteOp;
 import Classes.UpdateMaterialQuantity;
 import jakarta.transaction.Transactional;
 
@@ -80,5 +81,9 @@ public class SiteOperatorService {
 	 public boolean updateMaterialQuantity(int materialId, int projectId, int newQuantity) {
 		 int updatedRows = mprepo.updateMaterialQuantity(materialId, projectId, newQuantity);
 	        return updatedRows > 0; // Returns true if update was successful
+	 }
+	 
+	 public SiteOp getProject(int soId) {
+		 return sorepo.getProjectId(soId);
 	 }
 }

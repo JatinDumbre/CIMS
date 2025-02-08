@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< Updated upstream
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="com.cims.auth.Repository.UserRepository"/>
@@ -15,7 +14,7 @@
     <fullyQualifiedTypeName name="Classes.UserLogin"/>
     <fullyQualifiedTypeName name="Classes.RegisterUser"/>
     <fullyQualifiedTypeName name="com.cims.auth.Entities.User"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
 </qualifiedTypeNameHistroy>
-=======
-<qualifiedTypeNameHistroy/>
->>>>>>> Stashed changes

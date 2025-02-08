@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cims.crud.entities.User;
 
+import Classes.SiteOp;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -33,5 +34,8 @@ public interface SiteOperatorRepository extends JpaRepository<User,Integer>{
 	    @Query(nativeQuery = true, value = 
 	        "SELECT COUNT(*) FROM Material WHERE m_name = :materialName AND unit_id = :unitId")
 	    int checkMaterialExists(String materialName, int unitId);
+	    
+	    @Query(nativeQuery=true, value="SELECT p_id from project_allocation where so_id= :soId")
+	    SiteOp getProjectId(int soId);
 	    
 }

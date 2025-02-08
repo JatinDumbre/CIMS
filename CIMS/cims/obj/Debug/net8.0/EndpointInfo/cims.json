@@ -187,9 +187,9 @@
             "type": "number",
             "format": "float"
           },
-          "projectName": {
-            "type": "string",
-            "nullable": true
+          "projectId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

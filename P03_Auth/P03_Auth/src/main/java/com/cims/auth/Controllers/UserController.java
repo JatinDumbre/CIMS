@@ -25,23 +25,15 @@ public class UserController {
 	public User login(@RequestBody UserLogin ul) {
 		return uservice.getUser(ul.getEmail() , ul.getPassword());
 	}
-	
+	@GetMapping("/getUser/{userid}")
+	public User getUserById(@PathVariable int userid) {
+	    return uservice.getUserById(userid);
+	    
+	    
+	}
 	@PostMapping("/register")
 	public User register(@RequestBody RegisterUser ru) {
 		return uservice.register(ru.getFname(),ru.getLname(),ru.getMob_no(),ru.getEmail(),ru.getAddress(),ru.getPassword(),ru.getAcc_id(),ru.getStatus());
 	}
-	
-//	change by pankaj
-	@GetMapping("/getUser/{userid}")
-	public ResponseEntity<?> getUserById(@PathVariable int userid) {
-	    User user = uservice.getUserById(userid);
-	    
-	    if (user != null) {
-	        return ResponseEntity.ok(user);
-	    } else {
-	        return ResponseEntity.status(404).body("User not found");
-	    }
-	}
-//
 	
 }

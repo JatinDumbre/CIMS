@@ -1,0 +1,8 @@
+package Classes;
+
+import lombok.Data;
+
+@Data
+public class SiteOp {
+	int projectId;
+}

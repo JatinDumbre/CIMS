@@ -19,6 +19,7 @@ import com.cims.crud.services.SiteOperatorService;
 
 import Classes.GetMaterial;
 import Classes.MaterialAdd;
+import Classes.SiteOp;
 import Classes.UpdateMaterialQuantity;
 
 @CrossOrigin(origins = "http://localhost:3003")
@@ -40,13 +41,16 @@ public class SiteOperatorController {
 	            materialRequest.getUnitName(),
 	            materialRequest.getQuantity(),
 	            materialRequest.getSoId()
-	        );
-	        
+	        );   
 	    }
 	
 	 @PutMapping("/update-quantity/{materialId}")
 	 public void updateMaterialQuantity(@PathVariable int materialId,@RequestBody UpdateMaterialQuantity request) {
 	     soservice.updateMaterialQuantity(materialId,request.getProjectId(),request.getNewQuantity());
 	  
+	 }
+	 @GetMapping("/getprojectId/{soId}")
+	 public SiteOp getProjectID(@PathVariable int soId) {
+		 return soservice.getProject(soId);
 	 }
 }

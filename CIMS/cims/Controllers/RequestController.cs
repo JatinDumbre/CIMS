@@ -57,7 +57,7 @@ namespace cims.Controllers
 
             // Find Project ID based on Project Name
             var project = await _context.Projects
-                .FirstOrDefaultAsync(p => p.ProjectName == requestDto.ProjectName);
+                .FirstOrDefaultAsync(p => p.ProjectId == requestDto.ProjectId);
             if (project == null)
             {
                 return NotFound("Project not found");
