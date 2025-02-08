@@ -116,7 +116,7 @@ const AllRequests = () => {
     const fetchProjectId = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8033/getprojectIdpm/${userid}`
+          `http://localhost:8033/getprojectId/${userid}`
         );
         if (!response.ok) throw new Error("Failed to fetch project ID");
         const data = await response.json();
@@ -133,18 +133,34 @@ const AllRequests = () => {
   useEffect(() => {
     if (projectid.projectId) {
       fetch(
-        `http://localhost:9034/api/Request/getByProject/${projectid.projectId}`
+        `https://localhost:9034/api/Request/getByProject/${projectid.projectId}`
       )
         .then((resp) => resp.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setRequests(data);
         })
         .catch((err) => {
           console.error("Error fetching requests:", err);
         });
     }
-  }, [projectid.projectId]); // Added dependency for when projectId updates
+  }); // Added dependency for when projectId updates
+
+  const updateStatus = async (statusName, requestId) => {
+    // console.log(statusName);
+    // console.log(requestId);
+
+    await fetch(
+      `https://localhost:9034/api/Request/updateStatus/${requestId}`,
+      {
+        method: "PUT",
+        body: JSON.stringify(statusName), // Ensure correct format
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }
+    );
+  };
 
   return (
     <div>
@@ -154,18 +170,41 @@ const AllRequests = () => {
           <thead>
             <tr className="text-center">
               <th scope="col">Sr No</th>
-              <th scope="col">Location Name</th>
-              <th scope="col">Location Address</th>
-              <th scope="col">Location City</th>
+              <th scope="col">Material Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Date</th>
+              <th scope="col">Status</th>
+              <th scope="col">Request Action</th>
             </tr>
           </thead>
           <tbody>
             {requests.map((req, index) => (
-              <tr className="text-center" key={req.loc_id}>
+              <tr className="text-center" key={req.mId}>
                 <td>{index + 1}</td>
-                <td>{req.loc_name}</td>
-                <td>{req.loc_add}</td>
-                <td>{req.loc_city}</td>
+                <td>{req.mIdNavigation.mName}</td>
+                <td>{req.reqQty}</td>
+                <td>{req.reqDate}</td>
+                <td>{req.status.statusName}</td>
+                <td>
+                  <button
+                    onClick={() => updateStatus("Approved", req.reqId)}
+                    className="btn btn-success m"
+                  >
+                    Approved
+                  </button>
+                  <button
+                    onClick={() => updateStatus("Hold", req.reqId)}
+                    className="btn btn-warning ms-1 me-1"
+                  >
+                    Hold
+                  </button>
+                  <button
+                    onClick={() => updateStatus("Rejected", req.reqId)}
+                    className="btn btn-danger"
+                  >
+                    Rejected
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
