@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cims.crud.entities.User;
@@ -17,8 +18,9 @@ import com.cims.crud.services.AdminService;
 
 import Classes.GetAllUser;
 
-@CrossOrigin(origins = "http://localhost:3003")
+//@CrossOrigin(origins = "http://localhost:3003")
 @RestController
+@RequestMapping("/admin")
 public class AdminController {
 	@Autowired
 	AdminService aservice;
