@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace cims.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("transaction/[controller]")]
     [ApiController]
     public class RequestController : ControllerBase
     {

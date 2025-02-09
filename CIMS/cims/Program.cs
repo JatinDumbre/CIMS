@@ -1,7 +1,9 @@
 using System.Text.Json.Serialization;
 using cims.Models;
+using Steeltoe.Discovery.Client;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDiscoveryClient(builder.Configuration);
 
 // Add services to the container.
 
@@ -13,13 +15,12 @@ builder.Services.AddDbContext<P03CimsContext>();
 builder.Services.AddControllers().AddJsonOptions(x =>
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-
-
 var app = builder.Build();
-app.UseCors(policy => policy.AllowAnyHeader()
-                .AllowAnyMethod()
-                .SetIsOriginAllowed(origin => true)
-                .AllowCredentials());
+
+//app.UseCors(policy => policy.AllowAnyHeader()
+//                .AllowAnyMethod()
+//                .SetIsOriginAllowed(origin => true)
+//                .AllowCredentials());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -28,7 +29,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseDiscoveryClient();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

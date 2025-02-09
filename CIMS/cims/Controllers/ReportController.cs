@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace cims.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("transaction/[controller]")]
     [ApiController]
     public class ReportController : ControllerBase
     {

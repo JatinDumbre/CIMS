@@ -2,7 +2,7 @@
   {
     "ContainingType": "cims.Controllers.ReportController",
     "Method": "GenerateReport",
-    "RelativePath": "api/Report/generate-report/{projectId}",
+    "RelativePath": "transaction/Report/generate-report/{projectId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -18,7 +18,7 @@
   {
     "ContainingType": "cims.Controllers.RequestController",
     "Method": "GetAllRequest",
-    "RelativePath": "api/Request",
+    "RelativePath": "transaction/Request",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -28,7 +28,7 @@
   {
     "ContainingType": "cims.Controllers.RequestController",
     "Method": "CreateRequest",
-    "RelativePath": "api/Request",
+    "RelativePath": "transaction/Request",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -44,7 +44,7 @@
   {
     "ContainingType": "cims.Controllers.RequestController",
     "Method": "GetRequestsByProject",
-    "RelativePath": "api/Request/getByProject/{projectId}",
+    "RelativePath": "transaction/Request/getByProject/{projectId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -60,7 +60,7 @@
   {
     "ContainingType": "cims.Controllers.RequestController",
     "Method": "UpdateRequestStatus",
-    "RelativePath": "api/Request/updateStatus/{requestId}",
+    "RelativePath": "transaction/Request/updateStatus/{requestId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

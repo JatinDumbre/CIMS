@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cims.crud.entities.Location;
@@ -15,8 +16,9 @@ import Classes.GetAllProjects;
 import Classes.GetAllUser;
 import Classes.ProjectDetails;
 
-@CrossOrigin(origins = "http://localhost:3003")
+//@CrossOrigin(origins = "http://localhost:3003")
 @RestController
+@RequestMapping("/director")
 public class DirectorController {
 	@Autowired
 	DirectorService dservice;

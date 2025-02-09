@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Report/generate-report/{projectId}": {
+    "/transaction/Report/generate-report/{projectId}": {
       "get": {
         "tags": [
           "Report"
@@ -28,7 +28,7 @@
         }
       }
     },
-    "/api/Request": {
+    "/transaction/Request": {
       "get": {
         "tags": [
           "Request"
@@ -69,7 +69,7 @@
         }
       }
     },
-    "/api/Request/getByProject/{projectId}": {
+    "/transaction/Request/getByProject/{projectId}": {
       "get": {
         "tags": [
           "Request"
@@ -92,7 +92,7 @@
         }
       }
     },
-    "/api/Request/updateStatus/{requestId}": {
+    "/transaction/Request/updateStatus/{requestId}": {
       "put": {
         "tags": [
           "Request"
