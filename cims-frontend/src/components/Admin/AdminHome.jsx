@@ -12,7 +12,7 @@ const AdminHome = () => {
   const userid = JSON.parse(localStorage.getItem("loggedUser")).user_id;
 
   const deleteUser = async (id) => {
-    await fetch("http://localhost:8033/deactivateEmployee/" + id, {
+    await fetch("http://localhost:8030/admin/deactivateEmployee/" + id, {
       method: "PUT",
     }).then((response) => {
       if (response.status === 200) {
@@ -44,7 +44,7 @@ const AdminHome = () => {
   //     });
   // };
   useEffect(() => {
-    fetch("http://localhost:8032/getUser/" + userid)
+    fetch("http://localhost:8030/auth/getUser/" + userid)
       .then((resp) => resp.json())
       .then((data) => {
         setUserData(data);
@@ -52,7 +52,7 @@ const AdminHome = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8033/employees")
+    fetch("http://localhost:8030/admin/employees")
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data);

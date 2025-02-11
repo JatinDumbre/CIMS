@@ -15,7 +15,7 @@ const UpdateForm = () => {
   // const [formData, setFormData] = useState(userdetails);
 
   const updateUser = async (data) => {
-    await fetch("http://localhost:8033/update/" + userdetails.user_id, {
+    await fetch("http://localhost:8030/user/update/" + userdetails.user_id, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -49,7 +49,7 @@ const UpdateForm = () => {
   };
 
   return (
-    <div className="">
+    <div className="bg-primary-subtle">
       {/* <AdminNavbar /> */}
       {userdetails.acc_id.acc_id == 1 ? (
         <AdminNavbar />

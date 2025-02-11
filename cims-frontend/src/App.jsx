@@ -26,6 +26,9 @@ import AllProjectss from "./components/Director/AllProjectss";
 import Locations from "./components/Director/Locations";
 import PMRequest from "./components/ProjectManager/PMRequest";
 import AllRequests from "./components/SiteOperator/AllRequests";
+import GenerateReport from "./components/Director/GenerateReport";
+import AddMaterial from "./components/IPManager/AddMaterial";
+import AllMaterials from "./components/IPManager/AllMaterials";
 function App() {
   const mystate = useSelector((state) => state.logged);
   return (
@@ -89,6 +92,9 @@ function App() {
         <Route path="/locations" element={<Locations />} />
         <Route path="/requestMaterialToSiteOperator" element={<PMRequest />} />
         <Route path="/allRequests" element={<AllRequests />} />
+        <Route path="/generateReports" element={<GenerateReport />} />
+        <Route path="/addMaterials" element={<AddMaterial />} />
+        <Route path="/allMaterials" element={<AllMaterials />} />
       </Routes>
     </div>
   );

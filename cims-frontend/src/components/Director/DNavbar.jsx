@@ -21,15 +21,15 @@ const DNavbar = () => {
                 Logout
               </a>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link
-                to="/register"
+                to="/generateReports"
                 className="nav-link px-3 nav-links"
                 style={{ color: "orange" }}
               >
-                New Registration
+                Generate Projects
               </Link>
-            </li>*/}
+            </li>
             <li className="nav-item">
               <Link
                 to="/update"

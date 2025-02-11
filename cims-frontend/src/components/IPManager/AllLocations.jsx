@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import IPNavbar from "./IPNavbar";
+import Footer from "../Admin/Footer";
 
 const AllLocations = () => {
   const navigate = useNavigate();
@@ -7,7 +9,7 @@ const AllLocations = () => {
   let count = 0;
 
   useEffect(() => {
-    fetch("http://localhost:8033/alllocations")
+    fetch("http://localhost:8030/ipmanager/alllocations")
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);
@@ -19,7 +21,8 @@ const AllLocations = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="bg-primary-subtle">
+      <IPNavbar />
       <div className="locTable ">
         <h3 className="text-center mb-3">All Locations</h3>
         <table className="table table-hover ms-3 me-3">
@@ -67,6 +70,7 @@ const AllLocations = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
