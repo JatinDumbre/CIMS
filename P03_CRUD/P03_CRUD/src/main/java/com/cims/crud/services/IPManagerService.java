@@ -6,15 +6,20 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cims.crud.entities.Category;
 import com.cims.crud.entities.Location;
 import com.cims.crud.entities.Material;
 import com.cims.crud.entities.Project;
+import com.cims.crud.entities.Unit;
 import com.cims.crud.entities.User;
 import com.cims.crud.repositories.IPManagerRepository;
 import com.cims.crud.repositories.LocationRepository;
+import com.cims.crud.repositories.MaterialRepository;
 import com.cims.crud.repositories.ProjectRepository;
 
 import Classes.GetAllProjects;
+import Classes.IPManagerMaterialDTO;
+import Classes.IPManagerMaterialDTO;
 import Classes.ProjectDetails;
 import Classes.ProjectInsertDTO;
 import Classes.UpdateProject;
@@ -31,6 +36,9 @@ public class IPManagerService {
 	 
 	 @Autowired
 	 ProjectRepository prepo;
+	 
+	 @Autowired
+	 MaterialRepository mrepo;
 	
 	 
 	    public List<ProjectDetails> getProjectsWithManagers() {
@@ -161,6 +169,27 @@ public class IPManagerService {
 	        // Insert Project Allocation
 	        prepo.insertProjectAllocation(projectId, projectDTO.getProjectManagerId(), projectDTO.getSiteOperatorId());
 	    }
-
+	    
+	    public List<IPManagerMaterialDTO> getAllMat(){
+	    	return mrepo.findMaterials();
+	    }
+	    
+	    public List<Unit> getAllU() {
+			 return mrepo.getAllUnit();
+		 }
+	    public List<Category> getAllC() {
+			 return mrepo.getAllCategory();
+		 }
+	    
+	    @Transactional
+	    public int addMaterial(IPManagerMaterialDTO materialDTO) {
+	        return mrepo.insertMaterial(
+	            materialDTO.getM_name(),
+	            materialDTO.getCat_id(),
+	            materialDTO.getUnit_id(),
+	            materialDTO.getDescription()
+	        );
+	    }
 
 }
+
