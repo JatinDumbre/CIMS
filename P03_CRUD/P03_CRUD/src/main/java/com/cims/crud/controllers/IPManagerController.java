@@ -13,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cims.crud.entities.Category;
 import com.cims.crud.entities.Location;
 import com.cims.crud.entities.Material;
 import com.cims.crud.entities.Project;
+import com.cims.crud.entities.Unit;
 import com.cims.crud.entities.User;
 import com.cims.crud.services.IPManagerService;
 
 import Classes.GetAllProjects;
+import Classes.IPManagerMaterialDTO;
 import Classes.ProjectDetails;
 import Classes.ProjectInsertDTO;
 import Classes.UpdateProject;
@@ -77,6 +80,21 @@ public class IPManagerController {
     public void addProject(@RequestBody ProjectInsertDTO projectDTO) {
         ipservice.addProject(projectDTO);
     }
+    @GetMapping("/getallmainmat")
+    public List<IPManagerMaterialDTO> getmaterial(){
+    	return ipservice.getAllMat();
+    }
+    @GetMapping("/allmainmaterialunit")
+	 public List<Unit> getAllunit() {
+		 return ipservice.getAllU();
+	 }
+    @GetMapping("/allmainmaterialcategory")
+	 public List<Category> getAllC() {
+		 return ipservice.getAllC();
+	 }
+    @PostMapping("/addmainmat")
+    public void addMaterials(@RequestBody IPManagerMaterialDTO materialDTO) {
+        ipservice.addMaterial(materialDTO);
+    }
   
-
 }

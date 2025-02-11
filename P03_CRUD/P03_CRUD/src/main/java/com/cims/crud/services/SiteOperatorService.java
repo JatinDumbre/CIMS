@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cims.crud.entities.Material_Project;
+import com.cims.crud.entities.Unit;
+import com.cims.crud.entities.Unit;
 import com.cims.crud.repositories.MaterialProjectRepository;
 import com.cims.crud.repositories.SiteOperatorRepository;
 import com.cims.crud.repositories.UserRepository;
 
+import Classes.AllMaterialMaster;
 import Classes.GetMaterial;
 import Classes.SiteOp;
 import Classes.UpdateMaterialQuantity;
@@ -85,5 +88,11 @@ public class SiteOperatorService {
 	 
 	 public SiteOp getProject(int soId) {
 		 return sorepo.getProjectId(soId);
+	 }
+	 public List<AllMaterialMaster> getAllMat() {
+		 return sorepo.getAllMaterial();
+	 }
+	 public List<Unit> getAllU() {
+		 return sorepo.getAllUnit();
 	 }
 }

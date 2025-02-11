@@ -8,8 +8,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.cims.crud.entities.Unit;
 import com.cims.crud.entities.User;
 
+import Classes.AllMaterialMaster;
 import Classes.SiteOp;
 import jakarta.transaction.Transactional;
 
@@ -37,5 +39,13 @@ public interface SiteOperatorRepository extends JpaRepository<User,Integer>{
 	    
 	    @Query(nativeQuery=true, value="SELECT p_id from project_allocation where so_id= :soId")
 	    SiteOp getProjectId(int soId);
+	    
+	    @Query(nativeQuery=true, value="SELECT * from material")
+	    List<AllMaterialMaster> getAllMaterial();
+	    
+	    @Query(nativeQuery=true, value="SELECT * from unit")
+	    List<Unit> getAllUnit();
+	    
+	    
 	    
 }

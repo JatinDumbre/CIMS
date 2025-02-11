@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cims.crud.entities.Material;
+import com.cims.crud.entities.Unit;
 import com.cims.crud.services.SiteOperatorService;
 
+import Classes.AllMaterialMaster;
 import Classes.GetMaterial;
 import Classes.MaterialAdd;
 import Classes.SiteOp;
@@ -54,5 +56,14 @@ public class SiteOperatorController {
 	 @GetMapping("/getprojectId/{soId}")
 	 public SiteOp getProjectID(@PathVariable int soId) {
 		 return soservice.getProject(soId);
+	 }
+	 
+	 @GetMapping("/allmaterialmaster")
+	 public List<AllMaterialMaster> getAllMaterial() {
+		 return soservice.getAllMat();
+	 }
+	 @GetMapping("/allmaterialunit")
+	 public List<Unit> getAllunit() {
+		 return soservice.getAllU();
 	 }
 }
