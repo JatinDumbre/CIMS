@@ -39,6 +39,16 @@ const IPNavbar = () => {
                 Projects
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link
+                to="/allMaterials"
+                className="nav-link px-3 nav-links"
+                style={{ color: "orange" }}
+              >
+                Material details
+              </Link>
+            </li>
             <li className="nav-item">
               <Link
                 to="/update"

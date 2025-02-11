@@ -8,7 +8,7 @@ const SONavbar = () => {
 
   const [materials, setMaterials] = useState();
   useEffect(() => {
-    fetch("http://localhost:8033/siteOp/" + userid)
+    fetch("http://localhost:8030/siteoperator/siteOp/" + userid)
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);

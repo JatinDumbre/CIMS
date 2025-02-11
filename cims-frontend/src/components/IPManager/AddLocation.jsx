@@ -25,7 +25,7 @@ const AddLocation = () => {
   };
 
   const addLocation = async (locationdetail) => {
-    await fetch("http://localhost:8033/addlocation", {
+    await fetch("http://localhost:8030/ipmanager/addlocation", {
       method: "POST",
       body: JSON.stringify(locationdetail),
       headers: {

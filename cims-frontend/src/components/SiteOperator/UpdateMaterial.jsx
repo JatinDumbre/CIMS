@@ -15,7 +15,7 @@ const UpdateMaterial = () => {
   const navigate = useNavigate();
 
   const updateQuantity = async (data) => {
-    await fetch("http://localhost:8033/update-quantity/" + mid, {
+    await fetch("http://localhost:8030/siteoperator/update-quantity/" + mid, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -48,7 +48,7 @@ const UpdateMaterial = () => {
   };
 
   return (
-    <div className="">
+    <div className="bg-primary-subtle">
       <SONavbar />
 
       <div
@@ -113,20 +113,22 @@ const UpdateMaterial = () => {
             </div> */}
 
             <div className="p-3 pb-2">
-              <label className="form-label"> Project Id </label>
+              <label className="form-label"> Project Name </label>
               <input
                 className={
-                  errors.projectId ? "mobno-error form-control" : "form-control"
+                  errors.projectName
+                    ? "mobno-error form-control"
+                    : "form-control"
                 }
                 disabled
                 type="text"
-                name="projectId"
-                {...register("projectId", {
+                name="projectName"
+                {...register("projectName", {
                   required: true,
                 })}
               />
-              {errors.projectId && errors.projectId.type === "required" && (
-                <p className="error-msg"> Mobile Number is required </p>
+              {errors.projectName && errors.projectName.type === "required" && (
+                <p className="error-msg"> Project Name is required </p>
               )}
             </div>
 
@@ -143,7 +145,7 @@ const UpdateMaterial = () => {
                 })}
               />
               {errors.quantity && errors.quantity.type === "required" && (
-                <p className="error-msg"> Last Name is required </p>
+                <p className="error-msg"> Quantity is required </p>
               )}
             </div>
 
@@ -161,7 +163,7 @@ const UpdateMaterial = () => {
                 })}
               />
               {errors.unitName && errors.unitName.type === "required" && (
-                <p className="error-msg"> Mobile Number is required </p>
+                <p className="error-msg"> Units is required </p>
               )}
             </div>
 

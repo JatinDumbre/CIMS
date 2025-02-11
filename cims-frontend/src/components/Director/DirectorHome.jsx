@@ -11,7 +11,7 @@ const DirectorHome = () => {
   let count = 0;
 
   useEffect(() => {
-    fetch("http://localhost:8032/getUser/" + userid)
+    fetch("http://localhost:8030/auth/getUser/" + userid)
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);
@@ -22,8 +22,8 @@ const DirectorHome = () => {
   return (
     <div className="bg-primary-subtle" style={{ height: "100%" }}>
       <DNavbar />
-      <div className="container">
-        <div className="rounded userMessage text-center mt-5 me-5 ms-5 mb-4 p-3  bg-light">
+      <div style={{ height: "470px" }} className="container pb-5">
+        <div className="rounded userMessage text-center mt-5 me-5 ms-5 mb-5 p-5  bg-light">
           <h2>Welcome {userData.fname}</h2>
         </div>
 
@@ -33,15 +33,19 @@ const DirectorHome = () => {
               className="col h-100 d-inline-block"
               style={{ width: "120px" }}
             >
-              <Link className="h" to="/allprojectss">
+              <Link className="btn btn-primary" to="/allprojectss">
                 All Projects
               </Link>
             </div>
-            <div className="col">
-              <Link to="/allEmployees">All Employees</Link>
+            <div className="col ">
+              <Link className="btn btn-primary" to="/allEmployees">
+                All Employees
+              </Link>
             </div>
             <div className="col">
-              <Link to="/locations">All Locations</Link>
+              <Link className="btn btn-primary" to="/locations">
+                All Locations
+              </Link>
             </div>
             {/* <div className="col">Project</div> */}
           </div>

@@ -13,7 +13,7 @@ function LoginForm() {
   const reduxAction = useDispatch();
 
   const loginfunc = async (logindetail) => {
-    await fetch("http://localhost:8032/login", {
+    await fetch("http://localhost:8030/auth/login", {
       method: "POST",
       body: JSON.stringify(logindetail),
       headers: {

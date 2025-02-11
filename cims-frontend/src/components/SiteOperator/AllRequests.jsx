@@ -103,6 +103,8 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SONavbar from "./SONavbar";
+import Footer from "../Admin/Footer";
 
 const AllRequests = () => {
   const navigate = useNavigate();
@@ -116,7 +118,7 @@ const AllRequests = () => {
     const fetchProjectId = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8033/getprojectId/${userid}`
+          `http://localhost:8030/siteoperator/getprojectId/${userid}`
         );
         if (!response.ok) throw new Error("Failed to fetch project ID");
         const data = await response.json();
@@ -133,7 +135,7 @@ const AllRequests = () => {
   useEffect(() => {
     if (projectid.projectId) {
       fetch(
-        `https://localhost:9034/api/Request/getByProject/${projectid.projectId}`
+        `http://localhost:8030/transaction/Request/getByProject/${projectid.projectId}`
       )
         .then((resp) => resp.json())
         .then((data) => {
@@ -151,7 +153,7 @@ const AllRequests = () => {
     // console.log(requestId);
 
     await fetch(
-      `https://localhost:9034/api/Request/updateStatus/${requestId}`,
+      `http://localhost:8030/transaction/Request/updateStatus/${requestId}`,
       {
         method: "PUT",
         body: JSON.stringify(statusName), // Ensure correct format
@@ -163,7 +165,8 @@ const AllRequests = () => {
   };
 
   return (
-    <div>
+    <div className="bg-primary-subtle">
+      <SONavbar />
       <div className="locTable">
         <h3 className="text-center mb-3">All Requests</h3>
         <table className="table table-hover ms-3 me-3">
@@ -222,6 +225,7 @@ const AllRequests = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

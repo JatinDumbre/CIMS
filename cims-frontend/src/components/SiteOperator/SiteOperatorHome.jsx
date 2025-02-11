@@ -11,7 +11,7 @@ const SiteOperatorHome = () => {
   let count = 0;
 
   useEffect(() => {
-    fetch("http://localhost:8033/siteOp/" + userid)
+    fetch("http://localhost:8030/siteoperator/siteOp/" + userid)
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);
@@ -24,7 +24,7 @@ const SiteOperatorHome = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8032/getUser/" + userid)
+    fetch("http://localhost:8030/auth/getUser/" + userid)
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);

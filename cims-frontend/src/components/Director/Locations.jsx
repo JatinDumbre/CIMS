@@ -9,7 +9,7 @@ const Locations = () => {
   const navigate = useNavigate();
   let count = 0;
   useEffect(() => {
-    fetch("http://localhost:8033/alllocationsbydirector")
+    fetch("http://localhost:8030/director/alllocationsbydirector")
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);

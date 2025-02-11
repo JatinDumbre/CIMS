@@ -175,6 +175,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
+import PMNavbar from "./PMNavbar";
+import Footer from "../Admin/Footer";
 
 const PMRequest = () => {
   const mid = JSON.parse(localStorage.getItem("mid")) || {};
@@ -199,7 +201,7 @@ const PMRequest = () => {
     const fetchProjectId = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8033/getprojectIdpm/${userid}`
+          `http://localhost:8030/projectmanager/getprojectIdpm/${userid}`
         );
         if (!response.ok) throw new Error("Failed to fetch project ID");
         const data = await response.json();
@@ -221,11 +223,14 @@ const PMRequest = () => {
 
   const requestMaterial = async (data) => {
     try {
-      const response = await fetch("https://localhost:9034/api/Request", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
+      const response = await fetch(
+        "http://localhost:8030/transaction/Request",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to send request");
 
@@ -246,53 +251,57 @@ const PMRequest = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center mt-5 mb-5">
-      <div className="card w-50">
-        <h1 className="text-center pt-3">Request Material</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="p-3 pb-2">
-            <label className="form-label">Material Name</label>
-            <input
-              className="form-control"
-              disabled
-              type="text"
-              {...register("materialName", { required: true })}
-            />
-            {errors.materialName && (
-              <p className="error-msg">Material Name is required</p>
-            )}
-          </div>
-
-          <div className="p-3 pb-2">
-            <label className="form-label">Required Quantity</label>
-            <input
-              className="form-control"
-              type="number"
-              {...register("reqQty", { required: true })}
-            />
-            {errors.reqQty && (
-              <p className="error-msg">Required Quantity is required</p>
-            )}
-          </div>
-
-          <div className="d-flex justify-content-center pt-1 pb-3">
-            <div className="p-3 pb-2 w-50">
-              <button className="btn btn-success w-100" type="submit">
-                Request
-              </button>
+    <div className="bg-primary-subtle">
+      <PMNavbar />
+      <div className="container d-flex justify-content-center align-items-center mt-5 mb-5">
+        <div className="card w-50">
+          <h1 className="text-center pt-3">Request Material</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="p-3 pb-2">
+              <label className="form-label">Material Name</label>
+              <input
+                className="form-control"
+                disabled
+                type="text"
+                {...register("materialName", { required: true })}
+              />
+              {errors.materialName && (
+                <p className="error-msg">Material Name is required</p>
+              )}
             </div>
-            <div className="p-3 pb-2 w-50">
-              <button
-                type="button"
-                className="btn btn-warning w-100"
-                onClick={() => navigate("/projectmanager")}
-              >
-                Cancel
-              </button>
+
+            <div className="p-3 pb-2">
+              <label className="form-label">Required Quantity</label>
+              <input
+                className="form-control"
+                type="number"
+                {...register("reqQty", { required: true })}
+              />
+              {errors.reqQty && (
+                <p className="error-msg">Required Quantity is required</p>
+              )}
             </div>
-          </div>
-        </form>
+
+            <div className="d-flex justify-content-center pt-1 pb-3">
+              <div className="p-3 pb-2 w-50">
+                <button className="btn btn-success w-100" type="submit">
+                  Request
+                </button>
+              </div>
+              <div className="p-3 pb-2 w-50">
+                <button
+                  type="button"
+                  className="btn btn-warning w-100"
+                  onClick={() => navigate("/projectmanager")}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

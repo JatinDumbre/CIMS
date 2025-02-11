@@ -9,7 +9,7 @@ const AllEmployees = () => {
   const navigate = useNavigate();
   let count = 0;
   useEffect(() => {
-    fetch("http://localhost:8033/employeesbydirector")
+    fetch("http://localhost:8030/director/employeesbydirector")
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);
@@ -22,7 +22,7 @@ const AllEmployees = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-primary-subtle">
       <DNavbar />
       <div className="container">
         <div className="empTable ">

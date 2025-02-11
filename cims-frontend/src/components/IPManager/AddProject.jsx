@@ -19,7 +19,7 @@ const AddProject = () => {
   } = useForm();
 
   useEffect(() => {
-    fetch("http://localhost:8033/allprojects")
+    fetch("http://localhost:8030/ipmanager/allprojects")
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data);
@@ -34,12 +34,12 @@ const AddProject = () => {
 
   useEffect(() => {
     // Fetch Project Managers
-    fetch("http://localhost:8033/allprojectmanager")
+    fetch("http://localhost:8030/ipmanager/allprojectmanager")
       .then((response) => response.json())
       .then((data) => setProjectManagers(data));
 
     // Fetch Site Operators
-    fetch("http://localhost:8033/allsiteoperator")
+    fetch("http://localhost:8030/ipmanager/allsiteoperator")
       .then((response) => response.json())
       .then((data) => setSiteOperators(data));
   }, []);
@@ -58,7 +58,7 @@ const AddProject = () => {
   };
 
   const addProject = async (projectDetails) => {
-    await fetch("http://localhost:8033/addprojectdas", {
+    await fetch("http://localhost:8030/ipmanager/addprojectdas", {
       method: "POST",
       body: JSON.stringify(projectDetails),
       headers: {
@@ -68,7 +68,7 @@ const AddProject = () => {
   };
 
   return (
-    <div>
+    <div className="bg-primary-subtle">
       <IPNavbar />
       <div
         className="container"

@@ -8,7 +8,7 @@ const AllProjectss = () => {
   const navigate = useNavigate();
   let count = 0;
   useEffect(() => {
-    fetch("http://localhost:8033/projectsbydirector")
+    fetch("http://localhost:8030/director/projectsbydirector")
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);
@@ -21,7 +21,7 @@ const AllProjectss = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-primary-subtle">
       <DNavbar />
       <div className="container">
         <div className="empTable ">

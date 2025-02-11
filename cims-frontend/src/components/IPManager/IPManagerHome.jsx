@@ -11,7 +11,7 @@ const IPManagerHome = () => {
   let count = 0;
 
   useEffect(() => {
-    fetch("http://localhost:8033/projects")
+    fetch("http://localhost:8030/ipmanager/projects")
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data);
@@ -33,7 +33,7 @@ const IPManagerHome = () => {
   // }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8032/getUser/" + userid)
+    fetch("http://localhost:8030/auth/getUser/" + userid)
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);

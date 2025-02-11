@@ -25,7 +25,7 @@ const RegistrationForm = () => {
   };
 
   const registerUser = async (registerdetail) => {
-    await fetch("http://localhost:8032/register", {
+    await fetch("http://localhost:8030/auth/register", {
       method: "POST",
       body: JSON.stringify(registerdetail),
       headers: {
@@ -35,7 +35,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div>
+    <div className="bg-primary-subtle">
       <AdminNavbar />
       <div
         className="container"
@@ -62,10 +62,19 @@ const RegistrationForm = () => {
                 {...register("fname", {
                   required: true,
                   minLength: 2,
+                  pattern: {
+                    value: /^(?!\s)(?!.*\s{1,}).+$/,
+                  },
                 })}
               />
               {errors.fname && errors.fname.type === "required" && (
                 <p className="error-msg"> First Name is required </p>
+              )}
+              {errors.fname && errors.fname.type === "pattern" && (
+                <p className="error-msg">
+                  First Name should not contain multiple spaces at start and
+                  end.
+                </p>
               )}
               {errors.fname && errors.fname.type === "minLength" && (
                 <p className="error-msg">
@@ -84,16 +93,23 @@ const RegistrationForm = () => {
                 name="lname"
                 {...register("lname", {
                   required: true,
-                  minLength: 1,
+                  minLength: 2,
+                  pattern: {
+                    value: /^(?!\s)(?!.*\s{1,}).+$/,
+                  },
                 })}
               />
               {errors.lname && errors.lname.type === "required" && (
                 <p className="error-msg"> Last Name is required </p>
               )}
+              {errors.lname && errors.lname.type === "pattern" && (
+                <p className="error-msg">
+                  Last Name should not contain multiple spaces at start and end.
+                </p>
+              )}
               {errors.lname && errors.lname.type === "minLength" && (
                 <p className="error-msg">
-                  {" "}
-                  Last Name should have min 1 characters{" "}
+                  Last Name should have min 2 characters
                 </p>
               )}
             </div>
@@ -198,22 +214,18 @@ const RegistrationForm = () => {
                 className={
                   errors.acc_id ? "acc_id-error form-control" : "form-control"
                 }
-                name="acc_id"
-                {...register("acc_id", { required: true, minLength: 1 })}
+                {...register("acc_id", { required: "Role is required" })}
               >
                 <option value="">---Select one---</option>
                 <option value="1">Admin</option>
                 <option value="2">Director</option>
-                <option value="2">IP Manager</option>
+                <option value="3">IP Manager</option>
                 <option value="4">Project Manager</option>
                 <option value="5">Site Operator</option>
               </select>
 
-              {errors.role && errors.role.type === "required" && (
-                <p className="error-msg"> Role is required </p>
-              )}
-              {errors.role && errors.role.type === "minLength" && (
-                <p className="error-msg"> Role should be selected </p>
+              {errors.acc_id && (
+                <p className="error-msg">{errors.acc_id.message}</p>
               )}
             </div>
 
